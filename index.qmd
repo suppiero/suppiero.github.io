@@ -1,0 +1,43 @@
+---
+title: "Piero Trujillo"
+about:
+  template: trestles
+  image: images/IMG_0315.jpeg
+  image-shape: round
+  image-width: 18em
+  links:
+    - icon: envelope-fill
+      text: Email
+      href: mailto:piero.trujillo18@gmail.com
+    - icon: file-text-fill
+      text: CV
+      href: https://github.com/suppiero/PieroTrujillo_CV
+    - icon: linkedin
+      text: LinkedIn
+      href: www.linkedin.com/in/piero-trujillo-79180a188
+    - icon: github
+      text: Github
+      href: https://github.com/suppiero
+---
+
+### about me
+
+
+Hello 👋🏽 My name is Piero Trujillo and welcome to my personal website!
+
+
+I recently graduated from the University of California, Santa Barbara, where I received a Bachelor's Degree in Statistics & Data Science.
+
+
+I possess extensive knowledge in data science libraries using Python, tidymodels and tidyverse in R, as well as intermediate proficiency in SQL and PySpark for database and big data processing.
+
+
+In my spare time, you can find me playing soccer and spikeball, getting my hands dirty in ceramics, whipping up culinary delights in the kitchen, or being a foodie with my friends downtown.
+
+### education
+
+Bachelor's in Statistics & Data Science \\\| 2023 \\\| UCSB
+
+\
+
+

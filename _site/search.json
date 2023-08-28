@@ -1,0 +1,16 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Piero Trujillo",
+    "section": "",
+    "text": "about me\nHello 👋🏽 My name is Piero Trujillo and welcome to my personal website!\nI recently graduated from the University of California, Santa Barbara, where I received a Bachelor’s Degree in Statistics & Data Science.\nI possess extensive knowledge in data science libraries using Python, tidymodels and tidyverse in R, as well as intermediate proficiency in SQL and PySpark for database and big data processing.\nIn my spare time, you can find me playing soccer and spikeball, getting my hands dirty in ceramics, whipping up culinary delights in the kitchen, or being a foodie with my friends downtown.\n\n\neducation\nBachelor’s in Statistics & Data Science \\| 2023 \\| UCSB"
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "About this site\n\n1 + 1\n\n[1] 2"
+  }
+]
