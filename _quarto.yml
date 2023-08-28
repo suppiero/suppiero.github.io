@@ -9,29 +9,32 @@ execute:
 website:
   title: "Piero Trujillo"
   favicon: images/icons8-stich.gif # source: (stich icon by Icons8)
+  repo-url: https://github.com/suppiero/suppiero.github.io
   navbar:
     background: primary
     left:
       - href: index.qmd
-        text: Home
+        text: "Home"
       - projects.qmd
     right:
       - icon: envelope-fill
         href: mailto:piero.trujillo18@gmail.com
       - icon: file-text-fill
         href: https://github.com/suppiero/suppiero.github.io/blob/main/images/Piero's%20Resume%202023.pdf # might have to rename CV
-      - icon: LinkedIn
+      - icon: linkedin
         href: www.linkedin.com/in/piero-trujillo-79180a188
-      - icon: GitHub
+      - icon: github
         href: https://github.com/suppiero
 
 format:
   html:
+    page-layout: full
+    sidebar: false
     theme: 
       light: light_theme.scss
       dark: dark_theme.scss
-    page-layout: full
     toc: true
+    mainfont: Roboto
     link-external-newwindow: true
     link-external-icon: false
 

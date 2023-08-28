@@ -1,0 +1,92 @@
+/*-- scss:defaults --*/
+
+// Import fonts (mainfont is defined in _quarto.yml)
+@import 
+url('https://fonts.googleapis.com/css2?family=Montserrat&family=Nunito:wght@300&family=Roboto+Mono:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Aboreto&family=Roboto:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300&display=swap');
+
+// Colors
+
+$steal-blue: #78adc9;
+$light-purple: #8e90d2;
+$light-green: #a1d28e;
+$brown: #90511d;
+$pale_avocado_green: #8ea879;
+$super_light_green: #e8ede1;
+$black: #000000;
+$white: #ffffff;
+$complimentary_blue: #798ea8;
+$celadon: #AFE1AF;
+$pastel_green: #C1E1C1;
+$robin_egg_blue: #96DED1;
+$Ultramarine: 	#0437F2;
+$Burnt_Sienna: 	#E97451;
+$Ochre: 	#CC7722;
+$Jungle_Green: 	#2AAA8A;
+$Cornflower_Blue: 	#6495ED;
+$Denim: 	#6F8FAF;
+$Midnight_Blue: 	#191970;
+$soft_cream: #e3e0cf; 
+$melon: #caedd0;
+$vivid-melon: #7ad18a;
+
+// Other Cool Colors
+$dark-purple: #49416D;
+$dark-pink: #A94282;
+$pale-purple: #F8EBFF;
+$blue: #99C0FA;
+$ivory: #FCFBED;
+$pink-lavender: #E6B9D4;
+$cherry-blossom: #FFB2C7;
+$mimi-pink: #FFE3EA;
+$cream: #F4F3EE;
+$gray-0: #d6d6d6;
+$gray-1: #BCB8B1;
+$gray-2: #8A817C;
+$gray-3: #222823;
+$gray-4: #191919;
+$black: #08090A;
+$purple: #AE8BD1;
+$gray: #0d0d0d;
+
+// Fonts
+$font-size: 35px;
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap');
+
+// Base Document Colors 
+
+$navbar-bg: $Burnt_Sienna; //navbar
+$navbar-fg: $black; // navbar foreground elements
+$navbar-hl: $white; // highlight color when hovering over navbar links
+$body-bg: $robin_egg_blue; // page background 
+$body-color: $black; // page text 
+$footer-bg: $light-purple; // footer 
+$link-color: $black; // hyperlinks 
+
+
+// Inline code
+$code-bg: $white; // inline code background color
+$code-color: $black; // inline code text color
+
+// Code blocks
+$code-block-bg: $white; // code block background color
+
+/*-- scss:rules --*/
+
+h1, h2, h3 {
+  letter-spacing: 5px;
+  font-weight: 700;
+  color: $black;
+}
+
+.title {
+  color: $black;
+}
+
+.custom-subtitle {
+  font-size: 22px;
+  font-style: italic;
+  color: $light-green;
+  margin-bottom: 0.15em;
+}
