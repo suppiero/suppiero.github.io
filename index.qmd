@@ -22,15 +22,11 @@ about:
 
 ### about me
 
-
 Hello 👋🏽 My name is Piero Trujillo and welcome to my personal website!
-
 
 I recently graduated from the University of California, Santa Barbara, where I received a Bachelor's Degree in Statistics & Data Science.
 
-
 I possess extensive knowledge in data science libraries using Python, tidymodels and tidyverse in R, as well as intermediate proficiency in SQL and PySpark for database and big data processing.
-
 
 In my spare time, you can find me playing soccer and spikeball, getting my hands dirty in ceramics, whipping up culinary delights in the kitchen, or being a foodie with my friends downtown.
 
@@ -39,5 +35,3 @@ In my spare time, you can find me playing soccer and spikeball, getting my hands
 Bachelor's in Statistics & Data Science \\\| 2023 \\\| UCSB
 
 \
-
-

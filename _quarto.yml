@@ -1,19 +1,41 @@
 project:
   type: website
+  execute-dir: project
+  output-dir: docs
+
+execute:
+  freeze: auto
 
 website:
-  title: "suppiero.github.io"
+  title: "Piero Trujillo"
+  favicon: images/icons8-stich.gif # source: (stich icon by Icons8)
   navbar:
+    background: primary
     left:
       - href: index.qmd
         text: Home
-      - about.qmd
+      - projects.qmd
+    right:
+      - icon: envelope-fill
+        href: mailto:piero.trujillo18@gmail.com
+      - icon: file-text-fill
+        href: https://github.com/suppiero/suppiero.github.io/blob/main/images/Piero's%20Resume%202023.pdf # might have to rename CV
+      - icon: LinkedIn
+        href: www.linkedin.com/in/piero-trujillo-79180a188
+      - icon: GitHub
+        href: https://github.com/suppiero
 
 format:
   html:
-    theme: cosmo
-    css: styles.css
+    theme: 
+      light: light_theme.scss
+      dark: dark_theme.scss
+    page-layout: full
     toc: true
+    link-external-newwindow: true
+    link-external-icon: false
 
-editor: visual
+
+
+
 
