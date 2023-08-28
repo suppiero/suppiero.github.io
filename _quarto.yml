@@ -20,9 +20,9 @@ website:
       - icon: envelope-fill
         href: mailto:piero.trujillo18@gmail.com
       - icon: file-text-fill
-        href: https://github.com/suppiero/suppiero.github.io/blob/main/images/Piero's%20Resume%202023.pdf # might have to rename CV
+        href: images/Piero_Resume.pdf
       - icon: linkedin
-        href: www.linkedin.com/in/piero-trujillo-79180a188
+        href: https://www.linkedin.com/in/piero-trujillo-79180a188
       - icon: github
         href: https://github.com/suppiero
 
