@@ -27,6 +27,7 @@ $Jungle_Green: 	#2AAA8A;
 $Cornflower_Blue: 	#6495ED;
 $Denim: 	#6F8FAF;
 $Midnight_Blue: 	#191970;
+$cetacean_blue: #001440;
 
 // Other Cool Colors
 $dark-purple: #49416D;
@@ -44,6 +45,7 @@ $gray-2: #8A817C;
 $gray-3: #222823;
 $gray-4: #191919;
 $black: #08090A;
+$gray: #0d0d0d;
 
 // Fonts
 $font-size: 25px;
@@ -51,10 +53,10 @@ $font-size: 25px;
 
 // Base Document Colors 
 
-$navbar-bg: $Cornflower_Blue; //navbar
+$navbar-bg: $Midnight_Blue; //navbar
 $navbar-fg: $mimi-pink; // navbar foreground elements
 $navbar-hl: $robin_egg_blue; // highlight color when hovering over navbar links
-$body-bg: $Midnight_Blue; // page background 
+$body-bg: $cetacean_blue; // page background 
 $body-color: $mimi-pink; // page text 
 $footer-bg: $light-purple; // footer 
 $link-color: $robin_egg_blue; // hyperlinks 
@@ -67,20 +69,128 @@ $code-color: $robin_egg_blue; // inline code text color
 // Code blocks
 $code-block-bg: $black; // code block background color
 
+
 /*-- scss:rules --*/
 
-h1, h2, h3 {
-  letter-spacing: 5px;
+/* ELEMENT SELECTORS */
+
+h1, h2, h3, h4, h5, h6 {
+  letter-spacing: 3px;
   font-weight: 700;
   color: $mimi-pink;
 }
 
-.title {
-  color: $mimi-pink;
+h3 {
+  font-size: 35px;
 }
+
+body {
+  line-height: 1.5;
+  font-size: 19.5px;
+}
+
+/* CLASS SELECTORS (self-defined) */
 
 .custom-subtitle {
   font-size: 22px;
+  margin-bottom: 0.15em;
+}
+
+.custom-subtitle2 {
+  font-size: 20px;
   font-style: italic;
-  color: $mimi-pink;
+}
+
+.large-text {
+  font-size: 20px;
+}
+
+.small-text {
+  font-size: 17px;
+}
+
+.extra-small-text{
+  font-size: 14px;  
+}
+
+.topbr {
+    display: block;
+    margin-top: 1em;
+}
+
+.center-text {
+  text-align: center;
+  left: 50%;
+}
+
+/*.dark-gray-text{
+  color: $dark-gray;
+}*/
+
+.container { // for centering buttons
+  height: 20px;
+  position: relative;
+}
+
+.center { // for centering buttons
+  //width: 100%;
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+.button-styling {
+  background: $pink;
+  border-color: $gray;
+  color: $gray;
+  border-radius: 0.6rem;
+  border-width: thin;
+  font-size: 18px;
+  letter-spacing: 3px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  padding-right: 6px;
+  padding-left: 6px;
+  transition-duration: 0.4s;
+}
+
+.button-styling:hover {
+  background-color: $white; 
+}
+
+.gray-italic {
+  color: $gray;
+  font-style: italic;
+  font-size: 17px;
+}
+
+.quote-text-bg {
+  background-color: rgba(166, 164, 161, 0.4);
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-right: 5px;
+  padding-left: 8px;
+  border-radius: 15px;
+}
+
+
+.about-link-text { // button text size (landing page)
+  font-size: 18px;
+}
+
+.bi { // button icon size (landing page)
+  font-size: 20px;
+}
+
+
+.card {
+  background-color: $white;
+  //border-radius: 5.25em;
+}
+
+.description {
+  font-size: 25px;
 }

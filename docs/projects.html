@@ -31,6 +31,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
 <link href="./images/icons8-stich.gif" rel="icon" type="image/gif">
+<script src="site_libs/quarto-listing/list.min.js"></script>
+<script src="site_libs/quarto-listing/quarto-listing.js"></script>
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -61,7 +63,38 @@ ul.task-list li input[type="checkbox"] {
     "search-submit-button-title": "Submit"
   }
 }</script>
+<script>
 
+  window.document.addEventListener("DOMContentLoaded", function (_event) {
+    const listingTargetEl = window.document.querySelector('#listing-listing .list');
+    if (!listingTargetEl) {
+      // No listing discovered, do not attach.
+      return; 
+    }
+
+    const options = {
+      valueNames: [{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
+      
+      searchColumns: [],
+    };
+
+    window['quarto-listings'] = window['quarto-listings'] || {};
+    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
+
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  });
+
+  window.addEventListener('hashchange',() => {
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  })
+  </script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 </head>
 
@@ -81,29 +114,27 @@ ul.task-list li input[type="checkbox"] {
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
-            <ul class="navbar-nav navbar-nav-scroll me-auto">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
     <a class="nav-link" href="./index.html" rel="" target="">
- <span class="menu-text">Home</span></a>
+ <span class="menu-text">home</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link active" href="./projects.html" rel="" target="" aria-current="page">
- <span class="menu-text">Projects</span></a>
+ <span class="menu-text">projects</span></a>
   </li>  
-</ul>
-            <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item compact">
     <a class="nav-link" href="mailto:piero.trujillo18@gmail.com" rel="" target=""><i class="bi bi-envelope-fill" role="img">
 </i> 
  <span class="menu-text"></span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/suppiero/suppiero.github.io/blob/main/images/Piero’s%20Resume%202023.pdf" rel="" target=""><i class="bi bi-file-text-fill" role="img">
+    <a class="nav-link" href="./images/Piero_Resume.pdf" rel="" target=""><i class="bi bi-file-text-fill" role="img">
 </i> 
  <span class="menu-text"></span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="./www.linkedin.com/in/piero-trujillo-79180a188" rel="" target=""><i class="bi bi-linkedin" role="img">
+    <a class="nav-link" href="https://www.linkedin.com/in/piero-trujillo-79180a188" rel="" target=""><i class="bi bi-linkedin" role="img">
 </i> 
  <span class="menu-text"></span></a>
   </li>  
@@ -124,18 +155,9 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#soccer" id="toc-soccer" class="nav-link active" data-scroll-target="#soccer">Soccer ⚽️</a></li>
-  <li><a href="#wildfires" id="toc-wildfires" class="nav-link" data-scroll-target="#wildfires">Wildfires 🔥</a></li>
-  </ul>
-</nav>
-    </div>
+    
 <!-- main -->
-<main class="content column-page-left" id="quarto-document-content">
+<main class="content column-page" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
@@ -158,18 +180,25 @@ ul.task-list li input[type="checkbox"] {
 <section id="soccer" class="level1">
 <h1>Soccer ⚽️</h1>
 <p>This machine learning project leverages gameweek-specific data from Fantasy Premier League, considering fundamental player statistics such as bonus points, expected points, goals scored, assists, ict_index, influence, threat, and creativity. Its objective is to develop a model that accurately predicts a player’s actual weekly point total in that specific week of the Fantasy Premier League. The six models I developed were Linear Regression, Decision Tree, Random Forest, Boosted Trees, Lasso Regression, and Ridge Regression. Upon thorough evaluation using three key metrics: RMSE, MAE, and R-Squared, the Random Forest model emerged as the greatest model, distinguished by its commendable accuracy yielding an RMSE value of 0.519.</p>
-<p>Links: <a href="https://github.com/suppiero/suppiero.github.io/blob/main/images/FanstasyPL.html">Project Report</a> and <a href="https://github.com/suppiero/PSTAT-131---Final-Project">GitHub repo</a></p>
+<p><strong>Links:</strong> <a href="https://github.com/suppiero/suppiero.github.io/blob/main/images/FanstasyPL.html">Project Report</a> and <a href="https://github.com/suppiero/PSTAT-131---Final-Project">GitHub repo</a></p>
 </section>
 <section id="wildfires" class="level1">
 <h1>Wildfires 🔥</h1>
 <p>In this project, I collaborated with a team of four students on a six-month research project sponsored by the Movement Data Science Lab at UCSB where we utilized time series datasets tracking human mobility to analyze changes in movement patterns during California wildfires. Specifically, we focused on the Lake Fire in Los Angeles County, which occurred from August to September in 2020. In this project, we used spatial-temporal data science techniques and machine learning applications to model human mobility in response to wildfires. Our main objective was to apply machine learning techniques to identify and trace changes in mobility time series of wildfire events. The project’s main finding is that mobility in locations closer to the fire’s edge and locations in the direction of the fire’s burn experience a greater impact from wildfires. Similarly, the categories of locations experiencing a significant impact in mobility from wildfires are Historical/Nature, Public Functions, Grocery, Gasoline, Religious, and Childcare. Furthermore, we produced a number of presentations, including a poster presentation for the UC Santa Barbara Data Science Capstone Project Showcase.</p>
-<p>Links: <a href="https://github.com/suppiero/suppiero.github.io/blob/main/images/move-poster.pdf">Poster</a></p>
-<hr>
+<p><strong>Links:</strong> <a href="https://github.com/suppiero/suppiero.github.io/blob/main/images/move-poster.pdf">Poster</a></p>
+
 
 
 </section>
 
-</main> <!-- /main -->
+<div class="quarto-listing quarto-listing-container-grid" id="listing-listing">
+<div class="list grid quarto-listing-cols-3">
+
+</div>
+<div class="listing-no-matching d-none">
+No matching items
+</div>
+</div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {

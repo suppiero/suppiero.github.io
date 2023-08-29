@@ -12,11 +12,13 @@ website:
   repo-url: https://github.com/suppiero/suppiero.github.io
   navbar:
     background: primary
-    left:
-      - href: index.qmd
-        text: "Home"
-      - projects.qmd
+    #left:
+
     right:
+      - href: index.qmd
+        text: "home"
+      - href: projects.qmd
+        text: "projects"
       - icon: envelope-fill
         href: mailto:piero.trujillo18@gmail.com
       - icon: file-text-fill
@@ -33,7 +35,7 @@ format:
     theme: 
       light: light_theme.scss
       dark: dark_theme.scss
-    toc: true
+    toc: false
     mainfont: Roboto
     link-external-newwindow: true
     link-external-icon: false
