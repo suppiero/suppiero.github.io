@@ -1,5 +1,6 @@
 ---
 title: "Piero Trujillo"
+
 about:
   template: trestles
   image: images/headshot.jpeg

@@ -1,0 +1,24 @@
+---
+title: "Predicting Points in Fantasy Premier League"
+description: "Using machine learning to propel myself to the top of my minileague"
+author:
+  - name: Piero Trujillo
+    url: https://suppiero.github.io 
+    affiliation: Bachelor's of Statistics and Data Science (UCSB) 
+    #affiliation-url: https://ucsb-meds.github.io
+date: 2023-05-28
+categories: [MACHINE LEARNING, Random Forest, R]
+citation:
+  url: https://suppiero.github.io/projects/fantasy_premier_league/
+#bibliography: references.bib # fix bibliography
+format:
+  html:
+    code-fold: false
+    code-summary: "code dropdown"
+image: "soccer_balls.jpg"
+draft: false # "true" will mean this is a draft post so it wont show up on my site
+---
+
+This machine learning project leverages gameweek-specific data from Fantasy Premier League, considering fundamental player statistics such as bonus points, expected points, goals scored, assists, ict_index, influence, threat, and creativity. Its objective is to develop a model that accurately predicts a player's actual weekly point total in that specific week of the Fantasy Premier League. The six models I developed were Linear Regression, Decision Tree, Random Forest, Boosted Trees, Lasso Regression, and Ridge Regression. Upon thorough evaluation using three key metrics: RMSE, MAE, and R-Squared, the Random Forest model emerged as the greatest model, distinguished by its commendable accuracy yielding an RMSE value of 0.519.
+
+**Links:** [Project Report](https://github.com/suppiero/suppiero.github.io/blob/main/images/FanstasyPL.html) and [GitHub repo](https://github.com/suppiero/PSTAT-131---Final-Project)

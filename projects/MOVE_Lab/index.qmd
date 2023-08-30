@@ -13,9 +13,27 @@ categories: [GEOSPATIAL DATA ANALYSIS, MACHINE LEARNING, CLUSTERING, TIME SERIES
 citation:
   url: https://suppiero.github.io/projects/MOVE_Lab/
 #bibliography: references.bib # fix bibliography
+format:
+  html:
+    code-fold: false
+    code-summary: "code dropdown"
 image: "wildfire.jpg"
-draft: true # "true" will mean this is a draft post so it wont show up on my site
+draft: false # "true" will mean this is a draft post so it wont show up on my site
 ---
 
-# photo credit: mike-newbry-DwtX9mMHBJ0-unsplash
+# wildfire photo credit: mike-newbry-DwtX9mMHBJ0-unsplash
 # soccer photo credit: travel-nomades-JO19K0HDDXI-unsplash 
+
+## Project Background
+
+In this project, I collaborated with a team of four students on a six-month research project sponsored by the Movement Data Science Lab at UCSB where we utilized time series datasets tracking human mobility to analyze changes in movement patterns during California wildfires. Specifically, we focused on the Lake Fire in Los Angeles County, which occurred from August to September in 2020. In this project, we used spatial-temporal data science techniques and machine learning applications to model human mobility in response to wildfires. Our main objective was to apply machine learning techniques to identify and trace changes in mobility time series of wildfire events. The project's main finding is that mobility in locations closer to the fire's edge and locations in the direction of the fire's burn experience a greater impact from wildfires. Similarly, the categories of locations experiencing a significant impact in mobility from wildfires are Historical/Nature, Public Functions, Grocery, Gasoline, Religious, and Childcare. Furthermore, we produced a number of presentations, including a poster presentation for the UC Santa Barbara Data Science Capstone Project Showcase.
+
+## Poster
+
+Below you can find our project poster that we presented at the UCSB Data Science Capstone Showcase!
+
+------------------------------------------------------------------------
+
+<iframe src="move-poster.pdf" width="100%" height="850px"></iframe>
+
+

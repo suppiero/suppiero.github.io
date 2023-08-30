@@ -36,6 +36,7 @@ $tea_green: #d0f0c0;
 $dark_nyanza: #e9ffdb;
 $goldenrod_yellow: #fafad2;
 $benifuji: #bb7796;
+$blanched_almond: #FFEBCD;
 
 // Other Cool Colors
 $dark-purple: #49416D;
@@ -62,7 +63,15 @@ $sohi: #e35c38;
 $airforce_blue: #5d8aa8;
 $pomelo_white: #f9ffe3;
 $cetacean_blue: #001440;
-
+$ice_blue: #C8E9E9;
+$ice_tint: #CFF2FF;
+$pale-pink: #FFFDF9;
+$pale-blue: #F9FFFC;
+$pale-ale: #FDFFF9;
+$GhostWhite:	#F8F8FF;
+$honeydew:	#F0FFF0;
+$DarkGreen:	#006400;
+$avocado-green: #B2C248;
 
 // Fonts
 $font-size: 35px;
@@ -70,11 +79,11 @@ $font-size: 35px;
 
 // Base Document Colors 
 
-$navbar-bg: $white; //navbar
-$navbar-fg: $benifuji; // navbar foreground elements
-$navbar-hl: $Cornflower_Blue; // highlight color when hovering over navbar links
-$body-bg: $Nyanza; // page background 
-$body-color: $gray-4; // page text 
+$navbar-bg: $super_light_green; //navbar
+$navbar-fg: $pale_avocado_green; // navbar foreground elements
+$navbar-hl: $pale_avocado_green; // highlight color when hovering over navbar links
+$body-bg: $honeydew; // page background 
+$body-color: $black; // page text 
 $footer-bg: $light-purple; // footer 
 $link-color: $benifuji; // hyperlinks 
 
