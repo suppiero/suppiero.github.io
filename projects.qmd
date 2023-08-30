@@ -1,22 +1,10 @@
 ---
-title: "Projects"
+title: "portfolio"
 listing:
   type: grid
-  contents: posts # projects
+  contents: projects
   sort: "date desc"
   categories: false # table of contents
 ---
 
 Check out some of my favorite projects I worked on as an undergraduate student at UC Santa Barbara!
-
-# Soccer ⚽️
-
-This machine learning project leverages gameweek-specific data from Fantasy Premier League, considering fundamental player statistics such as bonus points, expected points, goals scored, assists, ict_index, influence, threat, and creativity. Its objective is to develop a model that accurately predicts a player's actual weekly point total in that specific week of the Fantasy Premier League. The six models I developed were Linear Regression, Decision Tree, Random Forest, Boosted Trees, Lasso Regression, and Ridge Regression. Upon thorough evaluation using three key metrics: RMSE, MAE, and R-Squared, the Random Forest model emerged as the greatest model, distinguished by its commendable accuracy yielding an RMSE value of 0.519.
-
-**Links:** [Project Report](https://github.com/suppiero/suppiero.github.io/blob/main/images/FanstasyPL.html) and [GitHub repo](https://github.com/suppiero/PSTAT-131---Final-Project)
-
-# Wildfires 🔥
-
-In this project, I collaborated with a team of four students on a six-month research project sponsored by the Movement Data Science Lab at UCSB where we utilized time series datasets tracking human mobility to analyze changes in movement patterns during California wildfires. Specifically, we focused on the Lake Fire in Los Angeles County, which occurred from August to September in 2020. In this project, we used spatial-temporal data science techniques and machine learning applications to model human mobility in response to wildfires. Our main objective was to apply machine learning techniques to identify and trace changes in mobility time series of wildfire events. The project's main finding is that mobility in locations closer to the fire's edge and locations in the direction of the fire's burn experience a greater impact from wildfires. Similarly, the categories of locations experiencing a significant impact in mobility from wildfires are Historical/Nature, Public Functions, Grocery, Gasoline, Religious, and Childcare. Furthermore, we produced a number of presentations, including a poster presentation for the UC Santa Barbara Data Science Capstone Project Showcase.
-
-**Links:** [Poster](https://github.com/suppiero/suppiero.github.io/blob/main/images/move-poster.pdf)

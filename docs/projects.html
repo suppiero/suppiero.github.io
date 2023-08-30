@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Piero Trujillo - Projects</title>
+<title>Piero Trujillo - projects</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -73,9 +73,9 @@ ul.task-list li input[type="checkbox"] {
     }
 
     const options = {
-      valueNames: [{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
+      valueNames: ['listing-title','listing-author','listing-date','listing-image','listing-description',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
       
-      searchColumns: [],
+      searchColumns: ["listing-title","listing-author","listing-date","listing-image","listing-description"],
     };
 
     window['quarto-listings'] = window['quarto-listings'] || {};
@@ -161,7 +161,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Projects</h1>
+<h1 class="title">projects</h1>
 </div>
 
 
@@ -177,23 +177,87 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 <p>Check out some of my favorite projects I worked on as an undergraduate student at UC Santa Barbara!</p>
-<section id="soccer" class="level1">
-<h1>Soccer ⚽️</h1>
-<p>This machine learning project leverages gameweek-specific data from Fantasy Premier League, considering fundamental player statistics such as bonus points, expected points, goals scored, assists, ict_index, influence, threat, and creativity. Its objective is to develop a model that accurately predicts a player’s actual weekly point total in that specific week of the Fantasy Premier League. The six models I developed were Linear Regression, Decision Tree, Random Forest, Boosted Trees, Lasso Regression, and Ridge Regression. Upon thorough evaluation using three key metrics: RMSE, MAE, and R-Squared, the Random Forest model emerged as the greatest model, distinguished by its commendable accuracy yielding an RMSE value of 0.519.</p>
-<p><strong>Links:</strong> <a href="https://github.com/suppiero/suppiero.github.io/blob/main/images/FanstasyPL.html">Project Report</a> and <a href="https://github.com/suppiero/PSTAT-131---Final-Project">GitHub repo</a></p>
-</section>
-<section id="wildfires" class="level1">
-<h1>Wildfires 🔥</h1>
-<p>In this project, I collaborated with a team of four students on a six-month research project sponsored by the Movement Data Science Lab at UCSB where we utilized time series datasets tracking human mobility to analyze changes in movement patterns during California wildfires. Specifically, we focused on the Lake Fire in Los Angeles County, which occurred from August to September in 2020. In this project, we used spatial-temporal data science techniques and machine learning applications to model human mobility in response to wildfires. Our main objective was to apply machine learning techniques to identify and trace changes in mobility time series of wildfire events. The project’s main finding is that mobility in locations closer to the fire’s edge and locations in the direction of the fire’s burn experience a greater impact from wildfires. Similarly, the categories of locations experiencing a significant impact in mobility from wildfires are Historical/Nature, Public Functions, Grocery, Gasoline, Religious, and Childcare. Furthermore, we produced a number of presentations, including a poster presentation for the UC Santa Barbara Data Science Capstone Project Showcase.</p>
-<p><strong>Links:</strong> <a href="https://github.com/suppiero/suppiero.github.io/blob/main/images/move-poster.pdf">Poster</a></p>
 
 
 
-</section>
 
 <div class="quarto-listing quarto-listing-container-grid" id="listing-listing">
 <div class="list grid quarto-listing-cols-3">
-
+<div class="g-col-1" data-index="0" data-categories="MACHINE LEARNING,Random Forest,R" data-listing-date-sort="1685257200000" data-listing-file-modified-sort="1693423634290" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1">
+<a href="./projects/fantasy_premier_league/index.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img src="./projects/fantasy_premier_league/soccer_balls.jpg" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Predicting Points in Fantasy Premier League
+</h5>
+<div class="card-text listing-description">
+Using machine learning to propel myself to the top of my minileague
+</div>
+<div class="card-attribution card-text-small justify">
+<div class="listing-author">
+Piero Trujillo
+</div>
+<div class="listing-date">
+May 28, 2023
+</div>
+</div>
+</div>
+</div>
+</a>
+</div>
+<div class="g-col-1" data-index="1" data-categories="MACHINE LEARNING,Random Forest,R" data-listing-date-sort="1685257200000" data-listing-file-modified-sort="1693424244016" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1">
+<a href="./projects/pokemon_legendary_classifier/index.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img src="./projects/pokemon_legendary_classifier/surprised_pikachu.png" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Pokemon
+</h5>
+<div class="card-text listing-description">
+Pokemon
+</div>
+<div class="card-attribution card-text-small justify">
+<div class="listing-author">
+Piero Trujillo and Randy Ross
+</div>
+<div class="listing-date">
+May 28, 2023
+</div>
+</div>
+</div>
+</div>
+</a>
+</div>
+<div class="g-col-1" data-index="2" data-categories="GEOSPATIAL DATA ANALYSIS,MACHINE LEARNING,CLUSTERING,TIME SERIES,ANOMALY DETECTION,R,PYTHON,RSHINY,WILDFIRE" data-listing-date-sort="1685257200000" data-listing-file-modified-sort="1693422845956" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2">
+<a href="./projects/MOVE_Lab/index.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img src="./projects/MOVE_Lab/wildfire.jpg" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Understanding and Modeling Human Mobility Response to California Wildfires
+</h5>
+<div class="card-text listing-description">
+In this project, I collaborated with a team of four students on a six-month research project sponsored by the Movement Data Science Lab at UCSB where we utilized time series…
+</div>
+<div class="card-attribution card-text-small justify">
+<div class="listing-author">
+Piero Trujillo, Justin Liu, Lyndsey Umsted, Ellen Burrell, Sponsor - Somayeh Dodge |, Mentors - Evgeny Noi, Laura Baracaldo Lancheros, Enbo Zhou
+</div>
+<div class="listing-date">
+May 28, 2023
+</div>
+</div>
+</div>
+</div>
+</a>
+</div>
 </div>
 <div class="listing-no-matching d-none">
 No matching items
