@@ -2,7 +2,9 @@
 title: "Understanding and Modeling Human Mobility Response to California Wildfires"
 description: ""
 author:
-  - name: Piero Trujillo, Justin Liu, Lyndsey Umsted, Ellen Burrell | Sponsor: Somayeh Dodge | Mentors: Evgeny Noi, Laura Baracaldo Lancheros, Enbo Zhou
+  - name: Piero Trujillo, Justin Liu, Lyndsey Umsted, Ellen Burrell # fix sponsors + mentors
+  - name: Sponsor - Somayeh Dodge |
+  - name: Mentors - Evgeny Noi, Laura Baracaldo Lancheros, Enbo Zhou
     url: https://suppiero.github.io 
     affiliation: Movement Data Science Lab at UCSB, Bachelor's of Statistics and Data Science (UCSB) 
     #affiliation-url: https://ucsb-meds.github.io
@@ -10,7 +12,7 @@ date: 2023-05-28
 categories: [GEOSPATIAL DATA ANALYSIS, MACHINE LEARNING, CLUSTERING, TIME SERIES, ANOMALY DETECTION, R, PYTHON, RSHINY, WILDFIRE]
 citation:
   url: https://suppiero.github.io/projects/MOVE_Lab/
-bibliography: references.bib
+#bibliography: references.bib # fix bibliography
 image: "wildfire.jpg"
 draft: true # "true" will mean this is a draft post so it wont show up on my site
 ---
