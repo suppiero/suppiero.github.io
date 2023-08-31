@@ -1,13 +1,13 @@
 ---
-title: "Pokemon"
-description: "Pokemon"
+title: "Classifying Legendary Pokemon"
+description: "Predicting whether a pokemon is legendary based on their stats & attributes."
 author:
   - name: Piero Trujillo and Randy Ross
     url: https://suppiero.github.io 
     affiliation: Bachelor's of Statistics and Data Science (UCSB) 
     #affiliation-url: https://ucsb-meds.github.io
-date: 2023-05-28
-categories: [MACHINE LEARNING, Random Forest, R]
+date: 2020-12-04
+categories: [K NEAREST NEIGHBORS, PYTHON]
 citation:
   url: https://suppiero.github.io/projects/pokemon_legendary_classifier/
 #bibliography: references.bib # fix bibliography

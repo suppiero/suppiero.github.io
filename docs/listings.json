@@ -2,9 +2,9 @@
   {
     "listing": "/projects.html",
     "items": [
+      "/projects/MOVE_Lab/index.html",
       "/projects/fantasy_premier_league/index.html",
-      "/projects/pokemon_legendary_classifier/index.html",
-      "/projects/MOVE_Lab/index.html"
+      "/projects/pokemon_legendary_classifier/index.html"
     ]
   }
 ]

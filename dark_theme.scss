@@ -123,9 +123,6 @@ body {
   left: 50%;
 }
 
-/*.dark-gray-text{
-  color: $dark-gray;
-}*/
 
 .container { // for centering buttons
   height: 20px;
@@ -144,8 +141,8 @@ body {
 
 .button-styling {
   background: $pink;
-  border-color: $gray;
-  color: $gray;
+  border-color: $robin_egg_blue;
+  color: $robin_egg_blue;
   border-radius: 0.6rem;
   border-width: thin;
   font-size: 18px;
@@ -187,7 +184,7 @@ body {
 
 
 .card {
-  background-color: $white;
+  background-color: $Midnight_Blue;
   //border-radius: 5.25em;
 }
 

@@ -1,13 +1,13 @@
 ---
 title: "Predicting Points in Fantasy Premier League"
-description: "Using machine learning to propel myself to the top of my minileague"
+description: "Using machine learning to propel myself to the top of my minileague!"
 author:
   - name: Piero Trujillo
     url: https://suppiero.github.io 
     affiliation: Bachelor's of Statistics and Data Science (UCSB) 
     #affiliation-url: https://ucsb-meds.github.io
-date: 2023-05-28
-categories: [MACHINE LEARNING, Random Forest, R]
+date: 2022-12-11
+categories: [MACHINE LEARNING, RANDOM FOREST, R]
 citation:
   url: https://suppiero.github.io/projects/fantasy_premier_league/
 #bibliography: references.bib # fix bibliography
