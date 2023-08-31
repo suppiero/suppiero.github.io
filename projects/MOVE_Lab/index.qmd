@@ -1,6 +1,6 @@
 ---
 title: "Understanding and Modeling Human Mobility Response to California Wildfires"
-description: ""
+description: "A research poster created for the statistics & data science capstone project."
 author:
   - name: Piero Trujillo, Justin Liu, Lyndsey Umsted, Ellen Burrell
     url: https://suppiero.github.io 
