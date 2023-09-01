@@ -1,0 +1,2173 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.353">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Piero Trujillo - Legendary Pokemon Classifier</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../images/icons8-stich.gif" rel="icon" type="image/gif">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Piero Trujillo</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html" rel="" target="">
+ <span class="menu-text">home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../projects.html" rel="" target="">
+ <span class="menu-text">portfolio</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="mailto:piero.trujillo18@gmail.com" rel="" target=""><i class="bi bi-envelope-fill" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="../../images/Piero_Resume.pdf" rel="" target=""><i class="bi bi-file-text-fill" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://www.linkedin.com/in/piero-trujillo-79180a188" rel="" target=""><i class="bi bi-linkedin" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/suppiero" rel="" target=""><i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-page">
+      <h1 class="title">Legendary Pokemon Classifier</h1>
+                      </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content quarto-banner-title-block column-page" id="quarto-document-content">
+
+
+
+
+<section id="by-piero-trujillo-and-randy-ross" class="level2">
+<h2 class="anchored" data-anchor-id="by-piero-trujillo-and-randy-ross">by Piero Trujillo and Randy Ross</h2>
+</section>
+<section id="abstract" class="level1">
+<h1>Abstract</h1>
+<p>The focus of our project was to find a reliable way to classify legendary pokemon based on their different attributes. Many attributes of a pokemon were taken into account. These included their capture rate as well as their attack, defense, and speed stats. With our findings we could compare our results with ordinary pokemon, whose stats neighbored those of a legendary pokemon, in order to strong pokemon that would ordinarily be overlooked. Our data showed that the best classifiers for a legendary pokemon were their capture rate and defense stat. Therefore, legendary pokemon must have low capture rates and high defense stats. With this in mind, we were able to classify legendary pokemon with a success rate of 95.9%.</p>
+</section>
+<section id="introduction" class="level1">
+<h1>Introduction</h1>
+<p>Our primary goal was to build a classifier to identify legendary pokemon. We wondered which statistic would be the best indicator of a legendary pokemon. By comparing the stats of both regular and legendary pokemon, we would be able to find hidden gems in the game and be closer to building a Pokemon dream team: a team of 6 Pokemon that inflicts the most damage while remaining relatively impervious to any other team of 6 Pokemon.</p>
+<p>Our motivation is that Pokemon is awesome, simple as that. As the leading franchise of all time, Pokemon holds a special place in the hearts of a lot of people. Every new generation brings a lot of fresh faces into the world of Pokemon and the pandemic has definitely given us the time and lingering nostalgia to rope us back in as we try to relive those fun times. Whether you’re an experienced trainer looking to optimize your playthrough or a newcomer ready to learn the basics, the conclusions from this data set will guide you through your Pokemon journey.</p>
+<p>For readers unaware, Pokemon is a role playing game where you explore the world as a trainer who captures different pokemon, defeat gym leaders and eventually challenge elite trainers to become a pokemon master. Legendary pokemon can only be found once in the game, making them highly coveted and a rarity. They typically have very high stats, leading them to be very strong additions to your team. The main stats we are looking at are capture rate, attack, defense, and speed. Capture rate is an important stat because it shows you the success rate of catching a pokemon. The higher the capture rate, the easier it is to catch a pokemon. Likewise, better Pokemon will have lower catch rates so you can’t easily get an overpowered pokemon. Therefore, legendary pokemon should correlate to a lower capture rate since they are the epitome of a powerful Pokemon. The attack and defense values show a pokemon’s base stats in these fields. Attack and defense correlate with their damage and resistance to physical move types like Rock or Normal types. In addition, Pokemon also have Special Attack and Special Defense stats to show their damage and resistance to special moves, usually with types like Fire or Psychic. Speed is an especially important stat because the fastest pokemon always attacks first and a higher speed stat makes it easier to land critical hits. The dataset we are using is <a href="https://www.kaggle.com/rounakbanik/pokemon">The Complete Pokemon Dataset</a> by Rounak Banik, which contains information about 802 Pokemon from the first seven generations. The data set includes the names of the Pokemon, their primary and secondary types, attack and defense, and whether it is a legendary or not, in addition to other stats.</p>
+</section>
+<section id="data-and-eda" class="level1">
+<h1>Data and EDA</h1>
+<div class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> datascience <span class="im">import</span> <span class="op">*</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random </span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>matplotlib inline</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> mpl_toolkits.mplot3d <span class="im">import</span> Axes3D </span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>plt.style.use(<span class="st">'fivethirtyeight'</span>)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> warnings</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>warnings.simplefilter(<span class="st">'ignore'</span>, <span class="pp">FutureWarning</span>)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">3</span>)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>random.seed(<span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>pokemon <span class="op">=</span> Table.read_table(<span class="st">"pokemon.csv"</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>pokemon</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="2">
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">abilities</th>
+<th data-quarto-table-cell-role="th">against_bug</th>
+<th data-quarto-table-cell-role="th">against_dark</th>
+<th data-quarto-table-cell-role="th">against_dragon</th>
+<th data-quarto-table-cell-role="th">against_electric</th>
+<th data-quarto-table-cell-role="th">against_fairy</th>
+<th data-quarto-table-cell-role="th">against_fight</th>
+<th data-quarto-table-cell-role="th">against_fire</th>
+<th data-quarto-table-cell-role="th">against_flying</th>
+<th data-quarto-table-cell-role="th">against_ghost</th>
+<th data-quarto-table-cell-role="th">against_grass</th>
+<th data-quarto-table-cell-role="th">against_ground</th>
+<th data-quarto-table-cell-role="th">against_ice</th>
+<th data-quarto-table-cell-role="th">against_normal</th>
+<th data-quarto-table-cell-role="th">against_poison</th>
+<th data-quarto-table-cell-role="th">against_psychic</th>
+<th data-quarto-table-cell-role="th">against_rock</th>
+<th data-quarto-table-cell-role="th">against_steel</th>
+<th data-quarto-table-cell-role="th">against_water</th>
+<th data-quarto-table-cell-role="th">attack</th>
+<th data-quarto-table-cell-role="th">base_egg_steps</th>
+<th data-quarto-table-cell-role="th">base_happiness</th>
+<th data-quarto-table-cell-role="th">base_total</th>
+<th data-quarto-table-cell-role="th">capture_rate</th>
+<th data-quarto-table-cell-role="th">classfication</th>
+<th data-quarto-table-cell-role="th">defense</th>
+<th data-quarto-table-cell-role="th">experience_growth</th>
+<th data-quarto-table-cell-role="th">height_m</th>
+<th data-quarto-table-cell-role="th">hp</th>
+<th data-quarto-table-cell-role="th">japanese_name</th>
+<th data-quarto-table-cell-role="th">name</th>
+<th data-quarto-table-cell-role="th">percentage_male</th>
+<th data-quarto-table-cell-role="th">pokedex_number</th>
+<th data-quarto-table-cell-role="th">sp_attack</th>
+<th data-quarto-table-cell-role="th">sp_defense</th>
+<th data-quarto-table-cell-role="th">speed</th>
+<th data-quarto-table-cell-role="th">type1</th>
+<th data-quarto-table-cell-role="th">type2</th>
+<th data-quarto-table-cell-role="th">weight_kg</th>
+<th data-quarto-table-cell-role="th">generation</th>
+<th data-quarto-table-cell-role="th">is_legendary</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>['Overgrow', 'Chlorophyll']</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>0.5</td>
+<td>0.5</td>
+<td>0.5</td>
+<td>2</td>
+<td>2</td>
+<td>1</td>
+<td>0.25</td>
+<td>1</td>
+<td>2</td>
+<td>1</td>
+<td>1</td>
+<td>2</td>
+<td>1</td>
+<td>1</td>
+<td>0.5</td>
+<td>49</td>
+<td>5120</td>
+<td>70</td>
+<td>318</td>
+<td>45</td>
+<td>Seed Pokémon</td>
+<td>49</td>
+<td>1059860</td>
+<td>0.7</td>
+<td>45</td>
+<td>Fushigidaneフシギダネ</td>
+<td>Bulbasaur</td>
+<td>88.1</td>
+<td>1</td>
+<td>65</td>
+<td>65</td>
+<td>45</td>
+<td>grass</td>
+<td>poison</td>
+<td>6.9</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>['Overgrow', 'Chlorophyll']</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>0.5</td>
+<td>0.5</td>
+<td>0.5</td>
+<td>2</td>
+<td>2</td>
+<td>1</td>
+<td>0.25</td>
+<td>1</td>
+<td>2</td>
+<td>1</td>
+<td>1</td>
+<td>2</td>
+<td>1</td>
+<td>1</td>
+<td>0.5</td>
+<td>62</td>
+<td>5120</td>
+<td>70</td>
+<td>405</td>
+<td>45</td>
+<td>Seed Pokémon</td>
+<td>63</td>
+<td>1059860</td>
+<td>1</td>
+<td>60</td>
+<td>Fushigisouフシギソウ</td>
+<td>Ivysaur</td>
+<td>88.1</td>
+<td>2</td>
+<td>80</td>
+<td>80</td>
+<td>60</td>
+<td>grass</td>
+<td>poison</td>
+<td>13</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td>['Overgrow', 'Chlorophyll']</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>0.5</td>
+<td>0.5</td>
+<td>0.5</td>
+<td>2</td>
+<td>2</td>
+<td>1</td>
+<td>0.25</td>
+<td>1</td>
+<td>2</td>
+<td>1</td>
+<td>1</td>
+<td>2</td>
+<td>1</td>
+<td>1</td>
+<td>0.5</td>
+<td>100</td>
+<td>5120</td>
+<td>70</td>
+<td>625</td>
+<td>45</td>
+<td>Seed Pokémon</td>
+<td>123</td>
+<td>1059860</td>
+<td>2</td>
+<td>80</td>
+<td>Fushigibanaフシギバナ</td>
+<td>Venusaur</td>
+<td>88.1</td>
+<td>3</td>
+<td>122</td>
+<td>120</td>
+<td>80</td>
+<td>grass</td>
+<td>poison</td>
+<td>100</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>['Blaze', 'Solar Power']</td>
+<td>0.5</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>0.5</td>
+<td>1</td>
+<td>0.5</td>
+<td>1</td>
+<td>1</td>
+<td>0.5</td>
+<td>2</td>
+<td>0.5</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>2</td>
+<td>0.5</td>
+<td>2</td>
+<td>52</td>
+<td>5120</td>
+<td>70</td>
+<td>309</td>
+<td>45</td>
+<td>Lizard Pokémon</td>
+<td>43</td>
+<td>1059860</td>
+<td>0.6</td>
+<td>39</td>
+<td>Hitokageヒトカゲ</td>
+<td>Charmander</td>
+<td>88.1</td>
+<td>4</td>
+<td>60</td>
+<td>50</td>
+<td>65</td>
+<td>fire</td>
+<td>nan</td>
+<td>8.5</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td>['Blaze', 'Solar Power']</td>
+<td>0.5</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>0.5</td>
+<td>1</td>
+<td>0.5</td>
+<td>1</td>
+<td>1</td>
+<td>0.5</td>
+<td>2</td>
+<td>0.5</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>2</td>
+<td>0.5</td>
+<td>2</td>
+<td>64</td>
+<td>5120</td>
+<td>70</td>
+<td>405</td>
+<td>45</td>
+<td>Flame Pokémon</td>
+<td>58</td>
+<td>1059860</td>
+<td>1.1</td>
+<td>58</td>
+<td>Lizardoリザード</td>
+<td>Charmeleon</td>
+<td>88.1</td>
+<td>5</td>
+<td>80</td>
+<td>65</td>
+<td>80</td>
+<td>fire</td>
+<td>nan</td>
+<td>19</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>['Blaze', 'Solar Power']</td>
+<td>0.25</td>
+<td>1</td>
+<td>1</td>
+<td>2</td>
+<td>0.5</td>
+<td>0.5</td>
+<td>0.5</td>
+<td>1</td>
+<td>1</td>
+<td>0.25</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>4</td>
+<td>0.5</td>
+<td>2</td>
+<td>104</td>
+<td>5120</td>
+<td>70</td>
+<td>634</td>
+<td>45</td>
+<td>Flame Pokémon</td>
+<td>78</td>
+<td>1059860</td>
+<td>1.7</td>
+<td>78</td>
+<td>Lizardonリザードン</td>
+<td>Charizard</td>
+<td>88.1</td>
+<td>6</td>
+<td>159</td>
+<td>115</td>
+<td>100</td>
+<td>fire</td>
+<td>flying</td>
+<td>90.5</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td>['Torrent', 'Rain Dish']</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>2</td>
+<td>1</td>
+<td>1</td>
+<td>0.5</td>
+<td>1</td>
+<td>1</td>
+<td>2</td>
+<td>1</td>
+<td>0.5</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>0.5</td>
+<td>0.5</td>
+<td>48</td>
+<td>5120</td>
+<td>70</td>
+<td>314</td>
+<td>45</td>
+<td>Tiny Turtle Pokémon</td>
+<td>65</td>
+<td>1059860</td>
+<td>0.5</td>
+<td>44</td>
+<td>Zenigameゼニガメ</td>
+<td>Squirtle</td>
+<td>88.1</td>
+<td>7</td>
+<td>50</td>
+<td>64</td>
+<td>43</td>
+<td>water</td>
+<td>nan</td>
+<td>9</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>['Torrent', 'Rain Dish']</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>2</td>
+<td>1</td>
+<td>1</td>
+<td>0.5</td>
+<td>1</td>
+<td>1</td>
+<td>2</td>
+<td>1</td>
+<td>0.5</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>0.5</td>
+<td>0.5</td>
+<td>63</td>
+<td>5120</td>
+<td>70</td>
+<td>405</td>
+<td>45</td>
+<td>Turtle Pokémon</td>
+<td>80</td>
+<td>1059860</td>
+<td>1</td>
+<td>59</td>
+<td>Kameilカメール</td>
+<td>Wartortle</td>
+<td>88.1</td>
+<td>8</td>
+<td>65</td>
+<td>80</td>
+<td>58</td>
+<td>water</td>
+<td>nan</td>
+<td>22.5</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td>['Torrent', 'Rain Dish']</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>2</td>
+<td>1</td>
+<td>1</td>
+<td>0.5</td>
+<td>1</td>
+<td>1</td>
+<td>2</td>
+<td>1</td>
+<td>0.5</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>0.5</td>
+<td>0.5</td>
+<td>103</td>
+<td>5120</td>
+<td>70</td>
+<td>630</td>
+<td>45</td>
+<td>Shellfish Pokémon</td>
+<td>120</td>
+<td>1059860</td>
+<td>1.6</td>
+<td>79</td>
+<td>Kamexカメックス</td>
+<td>Blastoise</td>
+<td>88.1</td>
+<td>9</td>
+<td>135</td>
+<td>115</td>
+<td>78</td>
+<td>water</td>
+<td>nan</td>
+<td>85.5</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>['Shield Dust', 'Run Away']</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>0.5</td>
+<td>2</td>
+<td>2</td>
+<td>1</td>
+<td>0.5</td>
+<td>0.5</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>2</td>
+<td>1</td>
+<td>1</td>
+<td>30</td>
+<td>3840</td>
+<td>70</td>
+<td>195</td>
+<td>255</td>
+<td>Worm Pokémon</td>
+<td>35</td>
+<td>1000000</td>
+<td>0.3</td>
+<td>45</td>
+<td>Caterpieキャタピー</td>
+<td>Caterpie</td>
+<td>50</td>
+<td>10</td>
+<td>20</td>
+<td>20</td>
+<td>45</td>
+<td>bug</td>
+<td>nan</td>
+<td>2.9</td>
+<td>1</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+
+<p>... (790 rows omitted)</p>
+</div>
+</div>
+<section id="the-complete-pokemon-dataset---rounak-banik" class="level2">
+<h2 class="anchored" data-anchor-id="the-complete-pokemon-dataset---rounak-banik">The Complete Pokemon Dataset - Rounak Banik</h2>
+<p>https://www.kaggle.com/rounakbanik/pokemon</p>
+<p><strong>Ethical Considerations</strong></p>
+<ul>
+<li>Rounak Banik collected this data from http://serebii.net/, a very reputable Pokemon fan-site, because Pokemon is very special to him and built the dataset out of passion and curiosity for the game.</li>
+<li>We believe the analysis of this dataset does not cause harm to anyone because those represented in the data only exist virtually.</li>
+<li>Digital beings known as Pokemon are represented in the dataset. Nothing is being over-represented because the data is focusing solely on Pokemon and not any other groups.</li>
+<li>This could be considered ethically wrong if you are new to the game and want to experience it naturally.</li>
+</ul>
+<p><strong>Relevant Attributes</strong> - The only data missing from the dataset is Pokemon generation 8 (released in 2019), which would bring it up to date. - We are attempting to classify whether or not a certain Pokemon is legendary or not. + The variable will be either 0 or 1, where 0 means not legendary, and 1 means legendary. - We will use attributes attack and sp_attack, defense and sp_defense (sp = special), capture rate, hp (hit points), and speed. - We removed one Pokemon whose capture rate was “30 (Meteorite)255 (Core)”, which is not a plain number.</p>
+</section>
+<section id="eda" class="level2">
+<h2 class="anchored" data-anchor-id="eda">EDA</h2>
+<div class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>pokemon.scatter(<span class="st">"attack"</span>, <span class="st">"defense"</span>, group<span class="op">=</span><span class="st">"is_legendary"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="project_files/figure-html/cell-4-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<div class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>pokemon.scatter(<span class="st">"sp_attack"</span>, <span class="st">"sp_defense"</span>, group<span class="op">=</span><span class="st">"is_legendary"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="project_files/figure-html/cell-5-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<div class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>pokemon.scatter(<span class="st">"hp"</span>, <span class="st">"defense"</span>, group<span class="op">=</span><span class="st">"is_legendary"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="project_files/figure-html/cell-6-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<div class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>,<span class="dv">8</span>)).add_subplot(<span class="dv">111</span>, projection<span class="op">=</span><span class="st">'3d'</span>)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>ax.scatter(pokemon.column(<span class="st">"attack"</span>),</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>           pokemon.column(<span class="st">"defense"</span>),</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>           pokemon.column(<span class="st">"speed"</span>),</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>           c<span class="op">=</span>pokemon.column(<span class="st">"is_legendary"</span>))<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="project_files/figure-html/cell-7-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<div class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>,<span class="dv">8</span>)).add_subplot(<span class="dv">111</span>, projection<span class="op">=</span><span class="st">'3d'</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>ax.scatter(pokemon.column(<span class="st">"capture_rate"</span>), </span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>           pokemon.column(<span class="st">"attack"</span>), </span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>           pokemon.column(<span class="st">"defense"</span>), </span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>           c<span class="op">=</span>pokemon.column(<span class="st">"is_legendary"</span>))<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="project_files/figure-html/cell-8-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<div class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>best_columns <span class="op">=</span> pokemon.select(<span class="st">"name"</span>, <span class="st">"attack"</span>, <span class="st">"defense"</span>, <span class="st">"capture_rate"</span>, <span class="st">"is_legendary"</span>)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>legendaries <span class="op">=</span> best_columns.where(<span class="st">"is_legendary"</span>, are.equal_to(<span class="dv">1</span>))</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>capture_rate <span class="op">=</span> legendaries.group(<span class="st">"capture_rate"</span>)</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>attack <span class="op">=</span> legendaries.group(<span class="st">"attack"</span>)</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>defense <span class="op">=</span> legendaries.group(<span class="st">"defense"</span>)</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>capture_rate.show()</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="co"># attack.show()</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="co"># defense.show()</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">capture_rate</th>
+<th data-quarto-table-cell-role="th">count</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>3</td>
+<td>53</td>
+</tr>
+<tr class="even">
+<td>15</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td>25</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td>30</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td>45</td>
+<td>11</td>
+</tr>
+<tr class="even">
+<td>255</td>
+<td>2</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>The above table shows that 53 of the 70 legendary Pokemon have the lowest capture rate in the game.</p>
+<div class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>lowest_capture_rate <span class="op">=</span> best_columns.sort(<span class="st">"capture_rate"</span>)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>lowest_capture_rate.take(<span class="bu">range</span>(<span class="dv">20</span>)).show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">name</th>
+<th data-quarto-table-cell-role="th">attack</th>
+<th data-quarto-table-cell-role="th">defense</th>
+<th data-quarto-table-cell-role="th">capture_rate</th>
+<th data-quarto-table-cell-role="th">is_legendary</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Articuno</td>
+<td>85</td>
+<td>100</td>
+<td>3</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td>Zapdos</td>
+<td>90</td>
+<td>85</td>
+<td>3</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td>Moltres</td>
+<td>100</td>
+<td>90</td>
+<td>3</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td>Mewtwo</td>
+<td>150</td>
+<td>70</td>
+<td>3</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td>Raikou</td>
+<td>85</td>
+<td>75</td>
+<td>3</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td>Entei</td>
+<td>115</td>
+<td>85</td>
+<td>3</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td>Suicune</td>
+<td>75</td>
+<td>115</td>
+<td>3</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td>Lugia</td>
+<td>90</td>
+<td>130</td>
+<td>3</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td>Ho-Oh</td>
+<td>130</td>
+<td>90</td>
+<td>3</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td>Beldum</td>
+<td>55</td>
+<td>80</td>
+<td>3</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td>Metang</td>
+<td>75</td>
+<td>100</td>
+<td>3</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>Metagross</td>
+<td>145</td>
+<td>150</td>
+<td>3</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td>Regirock</td>
+<td>100</td>
+<td>200</td>
+<td>3</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td>Regice</td>
+<td>50</td>
+<td>100</td>
+<td>3</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td>Registeel</td>
+<td>75</td>
+<td>150</td>
+<td>3</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td>Latias</td>
+<td>100</td>
+<td>120</td>
+<td>3</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td>Latios</td>
+<td>130</td>
+<td>100</td>
+<td>3</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td>Kyogre</td>
+<td>150</td>
+<td>90</td>
+<td>3</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td>Groudon</td>
+<td>180</td>
+<td>160</td>
+<td>3</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td>Jirachi</td>
+<td>100</td>
+<td>100</td>
+<td>3</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>The above table shows that only 3 of the 20 lowest capture rates are non-legendary.</p>
+<div class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>highest_defense <span class="op">=</span> best_columns.sort(<span class="st">"defense"</span>, descending<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>highest_defense_20 <span class="op">=</span> highest_defense.take(<span class="bu">range</span>(<span class="dv">20</span>))</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>highest_defense_20.show()</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>highest_defense_20.group(<span class="st">"is_legendary"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">name</th>
+<th data-quarto-table-cell-role="th">attack</th>
+<th data-quarto-table-cell-role="th">defense</th>
+<th data-quarto-table-cell-role="th">capture_rate</th>
+<th data-quarto-table-cell-role="th">is_legendary</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Steelix</td>
+<td>125</td>
+<td>230</td>
+<td>25</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>Shuckle</td>
+<td>10</td>
+<td>230</td>
+<td>190</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td>Aggron</td>
+<td>140</td>
+<td>230</td>
+<td>45</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>Regirock</td>
+<td>100</td>
+<td>200</td>
+<td>3</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td>Avalugg</td>
+<td>117</td>
+<td>184</td>
+<td>55</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>Slowbro</td>
+<td>75</td>
+<td>180</td>
+<td>75</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td>Cloyster</td>
+<td>95</td>
+<td>180</td>
+<td>60</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>Bastiodon</td>
+<td>52</td>
+<td>168</td>
+<td>45</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td>Onix</td>
+<td>45</td>
+<td>160</td>
+<td>45</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>Groudon</td>
+<td>180</td>
+<td>160</td>
+<td>3</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td>Toxapex</td>
+<td>63</td>
+<td>152</td>
+<td>75</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>Tyranitar</td>
+<td>164</td>
+<td>150</td>
+<td>45</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td>Metagross</td>
+<td>145</td>
+<td>150</td>
+<td>3</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>Registeel</td>
+<td>75</td>
+<td>150</td>
+<td>3</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td>Doublade</td>
+<td>110</td>
+<td>150</td>
+<td>90</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>Carbink</td>
+<td>50</td>
+<td>150</td>
+<td>60</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td>Probopass</td>
+<td>55</td>
+<td>145</td>
+<td>60</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>Cofagrigus</td>
+<td>50</td>
+<td>145</td>
+<td>90</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td>Forretress</td>
+<td>90</td>
+<td>140</td>
+<td>75</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>Scizor</td>
+<td>150</td>
+<td>140</td>
+<td>25</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="10">
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">is_legendary</th>
+<th data-quarto-table-cell-role="th">count</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0</td>
+<td>17</td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td>3</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>highest_attack <span class="op">=</span> best_columns.sort(<span class="st">"attack"</span>, descending<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>highest_attack_20 <span class="op">=</span> highest_attack.take(<span class="bu">range</span>(<span class="dv">20</span>))</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>highest_attack_100 <span class="op">=</span> highest_attack.take(<span class="bu">range</span>(<span class="dv">100</span>))</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>highest_attack_200 <span class="op">=</span> highest_attack.take(<span class="bu">range</span>(<span class="dv">200</span>))</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Number of legendaries in top defense pokemon</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>highest_attack_20_sum <span class="op">=</span> highest_attack_20.stats().where(<span class="st">"statistic"</span>, are.equal_to(<span class="st">"sum"</span>))[<span class="dv">5</span>][<span class="dv">0</span>]</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>highest_attack_100_sum <span class="op">=</span> highest_attack_100.stats().where(<span class="st">"statistic"</span>, are.equal_to(<span class="st">"sum"</span>))[<span class="dv">5</span>][<span class="dv">0</span>]</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>highest_attack_200_sum <span class="op">=</span> highest_attack_200.stats().where(<span class="st">"statistic"</span>, are.equal_to(<span class="st">"sum"</span>))[<span class="dv">5</span>][<span class="dv">0</span>]</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="sc">% le</span><span class="st">gendary in top 20:"</span>, (highest_attack_20_sum <span class="op">/</span> <span class="dv">20</span>) <span class="op">*</span> <span class="dv">100</span>)</span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="sc">% le</span><span class="st">gendary in top 100:"</span>, (highest_attack_100_sum <span class="op">/</span> <span class="dv">100</span>) <span class="op">*</span> <span class="dv">100</span>)</span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="sc">% le</span><span class="st">gendary in top 200:"</span>, (highest_attack_200_sum <span class="op">/</span> <span class="dv">200</span>) <span class="op">*</span> <span class="dv">100</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>% legendary in top 20: 35.0
+% legendary in top 100: 28.000000000000004
+% legendary in top 200: 23.0</code></pre>
+</div>
+</div>
+<p>This may be implying that when sorted by attack, more legendaries are concentrated at the top.</p>
+<div class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>highest_defense_20 <span class="op">=</span> highest_defense.take(<span class="bu">range</span>(<span class="dv">20</span>))</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>highest_defense_100 <span class="op">=</span> highest_defense.take(<span class="bu">range</span>(<span class="dv">100</span>))</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>highest_defense_200 <span class="op">=</span> highest_defense.take(<span class="bu">range</span>(<span class="dv">200</span>))</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Number of legendaries in top defense pokemon</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>highest_defense_20_sum <span class="op">=</span> highest_defense_20.stats().where(<span class="st">"statistic"</span>, are.equal_to(<span class="st">"sum"</span>))[<span class="dv">5</span>][<span class="dv">0</span>]</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>highest_defense_100_sum <span class="op">=</span> highest_defense_100.stats().where(<span class="st">"statistic"</span>, are.equal_to(<span class="st">"sum"</span>))[<span class="dv">5</span>][<span class="dv">0</span>]</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>highest_defense_200_sum <span class="op">=</span> highest_defense_200.stats().where(<span class="st">"statistic"</span>, are.equal_to(<span class="st">"sum"</span>))[<span class="dv">5</span>][<span class="dv">0</span>]</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="sc">% le</span><span class="st">gendary in top 20:"</span>, (highest_defense_20_sum <span class="op">/</span> <span class="dv">20</span>) <span class="op">*</span> <span class="dv">100</span>)</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="sc">% le</span><span class="st">gendary in top 100:"</span>, (highest_defense_100_sum <span class="op">/</span> <span class="dv">100</span>) <span class="op">*</span> <span class="dv">100</span>)</span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="sc">% le</span><span class="st">gendary in top 200:"</span>, (highest_defense_200_sum <span class="op">/</span> <span class="dv">200</span>) <span class="op">*</span> <span class="dv">100</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>% legendary in top 20: 15.0
+% legendary in top 100: 22.0
+% legendary in top 200: 23.5</code></pre>
+</div>
+</div>
+<p>Unlike attack, when sorted by defense, there is not a higher concentration of legendaries at the top.</p>
+<div class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>lowest_defense <span class="op">=</span> best_columns.sort(<span class="st">"defense"</span>)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>lowest_defense_20 <span class="op">=</span> lowest_defense.take(<span class="bu">range</span>(<span class="dv">20</span>))</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>lowest_defense_20.show()</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>lowest_defense_20.group(<span class="st">"is_legendary"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">name</th>
+<th data-quarto-table-cell-role="th">attack</th>
+<th data-quarto-table-cell-role="th">defense</th>
+<th data-quarto-table-cell-role="th">capture_rate</th>
+<th data-quarto-table-cell-role="th">is_legendary</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Chansey</td>
+<td>5</td>
+<td>5</td>
+<td>30</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>Happiny</td>
+<td>5</td>
+<td>5</td>
+<td>130</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td>Blissey</td>
+<td>10</td>
+<td>10</td>
+<td>30</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>Abra</td>
+<td>20</td>
+<td>15</td>
+<td>200</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td>Pichu</td>
+<td>40</td>
+<td>15</td>
+<td>190</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>Igglybuff</td>
+<td>30</td>
+<td>15</td>
+<td>170</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td>Smoochum</td>
+<td>30</td>
+<td>15</td>
+<td>45</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>Jigglypuff</td>
+<td>45</td>
+<td>20</td>
+<td>170</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td>Carvanha</td>
+<td>90</td>
+<td>20</td>
+<td>225</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>Feebas</td>
+<td>15</td>
+<td>20</td>
+<td>255</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td>Whismur</td>
+<td>51</td>
+<td>23</td>
+<td>190</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>Ralts</td>
+<td>25</td>
+<td>25</td>
+<td>235</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td>Cleffa</td>
+<td>25</td>
+<td>28</td>
+<td>150</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>Weedle</td>
+<td>35</td>
+<td>30</td>
+<td>255</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td>Spearow</td>
+<td>60</td>
+<td>30</td>
+<td>255</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>Diglett</td>
+<td>55</td>
+<td>30</td>
+<td>255</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td>Kadabra</td>
+<td>35</td>
+<td>30</td>
+<td>100</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>Gastly</td>
+<td>35</td>
+<td>30</td>
+<td>190</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td>Hoothoot</td>
+<td>30</td>
+<td>30</td>
+<td>255</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>Ledyba</td>
+<td>20</td>
+<td>30</td>
+<td>255</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="13">
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">is_legendary</th>
+<th data-quarto-table-cell-role="th">count</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0</td>
+<td>20</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="cell" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>lowest_attack <span class="op">=</span> best_columns.sort(<span class="st">"attack"</span>)</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>lowest_attack_20 <span class="op">=</span> lowest_attack.take(<span class="bu">range</span>(<span class="dv">20</span>))</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>lowest_attack_20.show()</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>lowest_attack_20.group(<span class="st">"is_legendary"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">name</th>
+<th data-quarto-table-cell-role="th">attack</th>
+<th data-quarto-table-cell-role="th">defense</th>
+<th data-quarto-table-cell-role="th">capture_rate</th>
+<th data-quarto-table-cell-role="th">is_legendary</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Chansey</td>
+<td>5</td>
+<td>5</td>
+<td>30</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>Happiny</td>
+<td>5</td>
+<td>5</td>
+<td>130</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td>Magikarp</td>
+<td>10</td>
+<td>55</td>
+<td>255</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>Shuckle</td>
+<td>10</td>
+<td>230</td>
+<td>190</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td>Blissey</td>
+<td>10</td>
+<td>10</td>
+<td>30</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>Feebas</td>
+<td>15</td>
+<td>20</td>
+<td>255</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td>Metapod</td>
+<td>20</td>
+<td>55</td>
+<td>120</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>Abra</td>
+<td>20</td>
+<td>15</td>
+<td>200</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td>Ledyba</td>
+<td>20</td>
+<td>30</td>
+<td>255</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>Togepi</td>
+<td>20</td>
+<td>65</td>
+<td>190</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td>Marill</td>
+<td>20</td>
+<td>50</td>
+<td>190</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>Smeargle</td>
+<td>20</td>
+<td>35</td>
+<td>45</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td>Azurill</td>
+<td>20</td>
+<td>40</td>
+<td>150</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>Mantyke</td>
+<td>20</td>
+<td>50</td>
+<td>25</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td>Spewpa</td>
+<td>22</td>
+<td>60</td>
+<td>120</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>Wynaut</td>
+<td>23</td>
+<td>48</td>
+<td>125</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td>Bronzor</td>
+<td>24</td>
+<td>86</td>
+<td>255</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>Kakuna</td>
+<td>25</td>
+<td>50</td>
+<td>120</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td>Cleffa</td>
+<td>25</td>
+<td>28</td>
+<td>150</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>Ralts</td>
+<td>25</td>
+<td>25</td>
+<td>235</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="14">
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">is_legendary</th>
+<th data-quarto-table-cell-role="th">count</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0</td>
+<td>20</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>It seems that the capture rate of the Pokemon is the best indicator of whether it is legendary or not. The attack and defense of the Pokemon may also be a good indicator.</p>
+</section>
+</section>
+<section id="classification" class="level1">
+<h1>Classification</h1>
+<section id="training-and-testing-sets" class="level2">
+<h2 class="anchored" data-anchor-id="training-and-testing-sets">Training and testing sets</h2>
+<div class="cell" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>pokemon_classify_columns <span class="op">=</span> pokemon.select(<span class="st">"attack"</span>, <span class="st">"defense"</span>, <span class="st">"capture_rate"</span>, <span class="st">"is_legendary"</span>)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>pokemon_classify_columns.stats()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="15">
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">statistic</th>
+<th data-quarto-table-cell-role="th">attack</th>
+<th data-quarto-table-cell-role="th">defense</th>
+<th data-quarto-table-cell-role="th">capture_rate</th>
+<th data-quarto-table-cell-role="th">is_legendary</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>min</td>
+<td>5</td>
+<td>5</td>
+<td>3</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>max</td>
+<td>185</td>
+<td>230</td>
+<td>255</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td>median</td>
+<td>75</td>
+<td>70</td>
+<td>60</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>sum</td>
+<td>62264</td>
+<td>58420</td>
+<td>79009</td>
+<td>70</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="cell" data-scrolled="true" data-execution_count="16">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>all_legendaries <span class="op">=</span> pokemon_classify_columns.where(<span class="st">"is_legendary"</span>, are.equal_to(<span class="dv">1</span>)).sample(with_replacement<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>non_legendaries <span class="op">=</span> pokemon_classify_columns.where(<span class="st">"is_legendary"</span>, are.equal_to(<span class="dv">0</span>)).sample(with_replacement<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>num_legendary <span class="op">=</span> all_legendaries.num_rows</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>num_non_legendary <span class="op">=</span> non_legendaries.num_rows</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>num_legendary_training <span class="op">=</span> <span class="bu">int</span>(<span class="fl">0.667</span> <span class="op">*</span> num_legendary)</span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>num_non_legendary_training <span class="op">=</span> <span class="bu">int</span>(<span class="fl">0.667</span> <span class="op">*</span> num_non_legendary)</span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Take first two thirds legendary and non-legendary pokemon</span></span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>training_legendary <span class="op">=</span> all_legendaries.take(np.arange(num_legendary_training))</span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a>training_non_legendary <span class="op">=</span> non_legendaries.take(np.arange(num_non_legendary_training))</span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Take last third legendary and non-legendary</span></span>
+<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a>testing_legendary <span class="op">=</span> all_legendaries.take(np.arange(num_legendary_training, num_legendary))</span>
+<span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a>testing_non_legendary <span class="op">=</span> non_legendaries.take(np.arange(num_non_legendary_training, num_non_legendary))</span>
+<span id="cb18-19"><a href="#cb18-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-20"><a href="#cb18-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-21"><a href="#cb18-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Append training and testing legendary and non-legendary</span></span>
+<span id="cb18-22"><a href="#cb18-22" aria-hidden="true" tabindex="-1"></a>testing_legendary.append(testing_non_legendary)</span>
+<span id="cb18-23"><a href="#cb18-23" aria-hidden="true" tabindex="-1"></a>training_legendary.append(training_non_legendary)</span>
+<span id="cb18-24"><a href="#cb18-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-25"><a href="#cb18-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-26"><a href="#cb18-26" aria-hidden="true" tabindex="-1"></a><span class="co"># Shuffle training and testing and assign new names</span></span>
+<span id="cb18-27"><a href="#cb18-27" aria-hidden="true" tabindex="-1"></a>training <span class="op">=</span> training_legendary.shuffle()</span>
+<span id="cb18-28"><a href="#cb18-28" aria-hidden="true" tabindex="-1"></a>testing <span class="op">=</span> testing_legendary.shuffle()</span>
+<span id="cb18-29"><a href="#cb18-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-30"><a href="#cb18-30" aria-hidden="true" tabindex="-1"></a>training.relabel(<span class="st">"is_legendary"</span>, <span class="st">"Class"</span>)</span>
+<span id="cb18-31"><a href="#cb18-31" aria-hidden="true" tabindex="-1"></a>testing.relabel(<span class="st">"is_legendary"</span>, <span class="st">"Class"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="16">
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">attack</th>
+<th data-quarto-table-cell-role="th">defense</th>
+<th data-quarto-table-cell-role="th">capture_rate</th>
+<th data-quarto-table-cell-role="th">Class</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>92</td>
+<td>108</td>
+<td>100</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>50</td>
+<td>120</td>
+<td>75</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td>135</td>
+<td>105</td>
+<td>75</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>15</td>
+<td>20</td>
+<td>255</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td>95</td>
+<td>95</td>
+<td>45</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>105</td>
+<td>90</td>
+<td>45</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td>115</td>
+<td>60</td>
+<td>60</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>74</td>
+<td>74</td>
+<td>45</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td>120</td>
+<td>75</td>
+<td>45</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>47</td>
+<td>75</td>
+<td>150</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+
+<p>... (258 rows omitted)</p>
+</div>
+</div>
+<p>We are putting two thirds of all the Pokemon into the training set, and the other third into the testing set. To make sure both sets have legendary Pokemon, first the legendary pokemon are separated from the non-legendary, and two thirds from each catagory are put into the training set, and the rest into the testing set.</p>
+<section id="classifier" class="level3">
+<h3 class="anchored" data-anchor-id="classifier">Classifier</h3>
+<div class="cell" data-execution_count="17">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> accuracy(predictions, labels):</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>    diff <span class="op">=</span> labels <span class="op">-</span> predictions</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>    num_incorrect <span class="op">=</span> np.count_nonzero(diff)</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>    num_correct <span class="op">=</span> <span class="bu">len</span>(labels) <span class="op">-</span> num_incorrect</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>    accuracy <span class="op">=</span> num_correct <span class="op">/</span> <span class="bu">len</span>(labels)</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> accuracy</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="18">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> distance_nn(point1, point2):</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""The distance between two arrays of numbers."""</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.sqrt(np.<span class="bu">sum</span>((point1 <span class="op">-</span> point2)<span class="op">**</span><span class="dv">2</span>))</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> all_distances(training, point):</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""The distance between p (an array of numbers) and the numbers in row i of attribute_table."""</span></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>    attributes <span class="op">=</span> training.drop(<span class="st">'Class'</span>)</span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> distance_from_point(row):</span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> distance_nn(point, np.array(row))</span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> attributes.<span class="bu">apply</span>(distance_from_point)</span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> table_with_distances(training, point):</span>
+<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""A copy of the training table with the distance from each row to array p."""</span></span>
+<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> training.with_column(<span class="st">'Distance'</span>, all_distances(training, point))</span>
+<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> closest(training, point, k):</span>
+<span id="cb20-17"><a href="#cb20-17" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""A table containing the k closest rows in the training table to array p."""</span></span>
+<span id="cb20-18"><a href="#cb20-18" aria-hidden="true" tabindex="-1"></a>    with_dists <span class="op">=</span> table_with_distances(training, point)</span>
+<span id="cb20-19"><a href="#cb20-19" aria-hidden="true" tabindex="-1"></a>    sorted_by_distance <span class="op">=</span> with_dists.sort(<span class="st">'Distance'</span>)</span>
+<span id="cb20-20"><a href="#cb20-20" aria-hidden="true" tabindex="-1"></a>    topk <span class="op">=</span> sorted_by_distance.take(np.arange(k))</span>
+<span id="cb20-21"><a href="#cb20-21" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> topk</span>
+<span id="cb20-22"><a href="#cb20-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-23"><a href="#cb20-23" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> majority(topkclasses):</span>
+<span id="cb20-24"><a href="#cb20-24" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""1 if the majority of the "Class" column is 1s, and 0 otherwise."""</span></span>
+<span id="cb20-25"><a href="#cb20-25" aria-hidden="true" tabindex="-1"></a>    ones <span class="op">=</span> topkclasses.where(<span class="st">'Class'</span>, are.equal_to(<span class="dv">1</span>)).num_rows</span>
+<span id="cb20-26"><a href="#cb20-26" aria-hidden="true" tabindex="-1"></a>    zeros <span class="op">=</span> topkclasses.where(<span class="st">'Class'</span>, are.equal_to(<span class="dv">0</span>)).num_rows</span>
+<span id="cb20-27"><a href="#cb20-27" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> ones <span class="op">&gt;</span> zeros:</span>
+<span id="cb20-28"><a href="#cb20-28" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="dv">1</span></span>
+<span id="cb20-29"><a href="#cb20-29" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb20-30"><a href="#cb20-30" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="dv">0</span></span>
+<span id="cb20-31"><a href="#cb20-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-32"><a href="#cb20-32" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> classify(training, p, k):</span>
+<span id="cb20-33"><a href="#cb20-33" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Classify an example with attributes p using k-nearest neighbor classification with the given training table."""</span></span>
+<span id="cb20-34"><a href="#cb20-34" aria-hidden="true" tabindex="-1"></a>    closestk <span class="op">=</span> closest(training, p, k)</span>
+<span id="cb20-35"><a href="#cb20-35" aria-hidden="true" tabindex="-1"></a>    topkclasses <span class="op">=</span> closestk.select(<span class="st">'Class'</span>)</span>
+<span id="cb20-36"><a href="#cb20-36" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> majority(topkclasses)</span>
+<span id="cb20-37"><a href="#cb20-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-38"><a href="#cb20-38" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> classify_table(training, points, k):</span>
+<span id="cb20-39"><a href="#cb20-39" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Classify a table of unlabled points using KNN"""</span></span>
+<span id="cb20-40"><a href="#cb20-40" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> classify_p(p):</span>
+<span id="cb20-41"><a href="#cb20-41" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> classify(training, p, k)</span>
+<span id="cb20-42"><a href="#cb20-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-43"><a href="#cb20-43" aria-hidden="true" tabindex="-1"></a>    classes <span class="op">=</span> points.<span class="bu">apply</span>(classify_p)</span>
+<span id="cb20-44"><a href="#cb20-44" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> points.with_column(<span class="st">'Class'</span>, classes)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+<section id="classifying-legendary-pokemon" class="level2">
+<h2 class="anchored" data-anchor-id="classifying-legendary-pokemon">Classifying Legendary Pokemon</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>prediction_1 <span class="op">=</span> classify_table(training, testing.drop(<span class="st">"Class"</span>), <span class="dv">1</span>)</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>prediction_3 <span class="op">=</span> classify_table(training, testing.drop(<span class="st">"Class"</span>), <span class="dv">3</span>)</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>prediction_5 <span class="op">=</span> classify_table(training, testing.drop(<span class="st">"Class"</span>), <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>accuracy_1 <span class="op">=</span> accuracy(prediction_1.column(<span class="st">"Class"</span>), testing.column(<span class="st">"Class"</span>))</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>accuracy_3 <span class="op">=</span> accuracy(prediction_3.column(<span class="st">"Class"</span>), testing.column(<span class="st">"Class"</span>))</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>accuracy_5 <span class="op">=</span> accuracy(prediction_5.column(<span class="st">"Class"</span>), testing.column(<span class="st">"Class"</span>))</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"k=1 -&gt;"</span>, accuracy_1)</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"k=3 -&gt;"</span>, accuracy_3)</span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"k=5 -&gt;"</span>, accuracy_5)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="results" class="level3">
+<h3 class="anchored" data-anchor-id="results">Results</h3>
+<p>The classifier was run using a few different k-values for the k-nearest neighbor algorithm. Using the 1st nearest-neighbor, the accuracy was about 95%. Going to the 3 nearest neighbors, the accuracy went up to about 95.5%. With 5 nearest neighbors, the accuracy was 95.9%. Increasing the k-value just slightly increases the accuracy of the classifier.</p>
+</section>
+</section>
+</section>
+<section id="analysis-results-and-interpretation" class="level1">
+<h1>Analysis, Results, and Interpretation</h1>
+<p>We achieved our goal because we were able to correctly classify legendary pokemon with a 95.9% success rate. We ran into a few issues, such as needing to relabel certain columns of the dataset to make sure it worked with our classification algorithm, and we learned how to find and consider any ethical concerns with our topic.</p>
+<p>The classifier was run using different k-values for the k-nearest neighbor algorithm. Using the 1st nearest-neighbor, the accuracy was about 95%. Going to the three nearest neighbors, the accuracy went up to about 95.5%. With 5 nearest neighbors, the accuracy was 95.9%. Increasing the k-value slightly increases the accuracy of the classifier.</p>
+<p>These results show that legendary pokemon are very likely to have high defense stats and low capture rates. We sorted all pokemon based on capture rate and defense to find specific examples to back up our claims. First, we sorted by capture rate. Out of the top 20 pokemon with the lowest capture rate, we found that all pokemon except for the three were legendary pokemon . All of the legendary pokemon had the lowest capture rate in the game, 3. The three non-legendary pokemon in the top 20 are all part of the Metagross evolution, an extremely powerful pokemon in its own right. However, we will point out that it’s a very and you receive it as a gift in his debut generation after you have already beaten the game. Second, we sorted by defense. Although we saw that the top 20 wasn’t nearly as dominated by legendaries as sorting by capture rate, we can point out that the ordinary pokemon who made and topped the defense list also had relatively higher capture rates when compared to a legendary pokemon. For example, Steelix (non-legendary) who boasts the highest defense is at the top of the list but is about eight times more easy to catch than any of the legendary pokemon in the top 20 for capture rate. Likewise, Shuckle (non-legendary), who is second on this list, has a capture rate of 190, more than 63 times easier to catch than any of the legendary pokemon in the top 20 for capture rate. Steelix actually has the lowest capture rate out of all of the non-legendary pokemon in the top 20. In contrast, all of the legendary pokemon in the top 20 have a capture rate of 3 in the top 20 highest defense list. So that’s why it is important to look at both the capture rate and the defense stat. Our claims were solidified when we looked at the top 20 lowest ranked pokemon for defense and capture rate. There were no legendary pokemon in either of those lists. Likewise, a lot of the same pokemon were found in both of the lowest ranked lists. Examples include Spearow (30 defense, 255 capture rate), Weedle (30 defense, 255 capture rate), Feebas (20 defense, 255 capture rate), and Abra (15 defense, 200 capture rate).</p>
+<p>Thus a very basic pokemon will have a high capture rate and low defense stat while legendary pokemon will have a low capture rate and high defense stats. Therefore, defense and capture rate are the best classifiers for legendary pokemon.</p>
+<p><strong>Ethics</strong></p>
+<p>A positive result that stems from our results is that it allows you to play the game more efficiently. With knowledge of the capture rate, we know whether to use an ordinary Pokeball or more effective equipment, like an Ultraball. This way you can save your hard earned in-game money. Our results are likely to affect players who want to learn more in depth about the game, whether they are new or old players. Unless they read our results however, they are not very likely to be affected by them.</p>
+<p>Our results could have a major ethical impact. For example, we could hurt a legendary pokemon’s feelings if our classifier fails to identify it as a legendary pokemon. Pokemon is also a very enjoyable game and could lead to game addiction. Unsatisfied with the current state of the world, people find solace in the world of pokemon instead of living their life to the fullest. The hours they spend playing Pokemon could also damage their eyesight. Pokemon has also been an ethically polarizing topic for animal rights activists and organizations such as PETA. They claim pokemon are enslaved and forced to fight each other for their owner’s pleasure, similar to illegal dogfighting. On the surface, it is easy to agree with this claim, as the concept of the game is to use your pokemon to defeat other trainers and achieve glory. However, by watching the anime, there are many examples of pokemon and humans living side by side. They aren’t restricted to living in pokeballs, it’s just a convenient way of living. Likewise, they are able to make decisions for themselves. Pikachu, the most famous pokemon of the entire series, actually abhors being inside a pokeball and perches on Ash’s shoulder instead. Meanwhile, there are a number of cases where pokemon leave their trainers. Ash’s Butterfree found a mate and left him to live with the rest of its species. Ash’s Primeape also chose to live in a dojo and train in order to become a P1 fighting champion, and Ash’s Charizard, arguably one of his best pokemon, originally belonged to another trainer who abandoned him for being weak. Charizard then rejected reuniting himself with his former trainer when he attempted to take him back after seeing his growth. So just because a pokemon is caught, doesn’t mean they are forced to live in captivity. In addition there are many pokemon who work side by side with their trainers. Fighting type pokemon have been known to work on construction sites with workers, and hospitals employ Chanseys and Blisseys to help nurses heal pokemon and create medicine. By looking at the franchise you can see that pokemon isn’t some twisted form of slavery. The message of pokemon is to find new friends and grow together. Whether that be through competing in tournaments together or traveling the world, an everlasting bond is built.</p>
+</section>
+<section id="conclusions-and-future-work" class="level1">
+<h1>Conclusions and Future Work</h1>
+<p>Based on our data, our conclusions show that the best classifiers for legendary pokemon are capture rate and defense. We supported the results from our K Nearest Neighbors algorithm by creating multiple tables of the top 20 highest and lowest ranked pokemon for capture rate and defense. Analyzing these tables verified these claims as legendary pokemon dominated the top 20 lowest capture rate table and the non-legendary pokemon who bested the top 20 highest defense table had way higher capture rates than a legendary pokemon. With this knowledge, we were able to classify legendary pokemon with a success rate of 95.9%. Therefore, legendary pokemon will have low capture rates and high defense stats.</p>
+<p>Other questions we can address with our research is whether the size and weight of a pokemon correlates with their different attack and defense stats to see if bigger and beefier pokemon are necessarily stronger. We could also rank all of the legendary pokemon to find the best legendary across all generations. Another extension of our analysis could be to find the ordinary pokemon that ranked closely to legendary pokemon in order to find strong non-legendary pokemon. We find our results to be trustworthy since our algorithm has a high success rate. Our results can be used to help new and old players alike, allowing them to optimize their teams or learn how different pokemon statistics can help them succeed in the game. We are looking forward to making more statistical analyses to assist and entertain all players, as they look to enjoy themselves in the world of Pokemon.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+          // target, if specified
+          link.setAttribute("target", "_blank");
+      }
+    }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

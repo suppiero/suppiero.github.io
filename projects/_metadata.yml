@@ -1,0 +1,7 @@
+# global options for all project cards
+
+# does not re-reun project posts after re-rendering website
+freeze: true
+
+# creates banner style text blocks
+title-block-banner: true

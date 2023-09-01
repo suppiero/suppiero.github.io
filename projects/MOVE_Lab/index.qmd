@@ -4,8 +4,8 @@ description: "A research poster created for the statistics & data science capsto
 author:
   - name: Piero Trujillo, Justin Liu, Lyndsey Umsted, Ellen Burrell
     url: https://suppiero.github.io 
-    affiliation: Bachelor's of Statistics and Data Science (UCSB), Movement Data Science Lab at UCSB --- Somayeh Dodge (Sponsor), Evgeny Noi, Laura Baracaldo Lancheros, Enbo Zhou (Mentors) 
-    #affiliation-url: https://ucsb-meds.github.io
+    affiliation: Bachelor's of Statistics and Data Science (UCSB), Movement Data Science Lab at UCSB --- Somayeh Dodge (Sponsor), Evgeny Noi, Laura Baracaldo Lancheros, and Enbo Zhou (Mentors) 
+    affiliation-url: https://move.geog.ucsb.edu/
 date: 2023-06-05
 categories: [GEOSPATIAL DATA ANALYSIS, MACHINE LEARNING, CLUSTERING, TIME SERIES, ANOMALY DETECTION, R, PYTHON, RSHINY, WILDFIRE]
 citation:
@@ -30,5 +30,3 @@ Below you can find our project poster that we presented at the UCSB Data Science
 ------------------------------------------------------------------------
 
 <iframe src="move-poster.pdf" width="100%" height="850px"></iframe>
-
-

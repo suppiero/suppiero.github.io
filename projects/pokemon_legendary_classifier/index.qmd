@@ -7,7 +7,7 @@ author:
     affiliation: Bachelor's of Statistics and Data Science (UCSB) 
     #affiliation-url: https://ucsb-meds.github.io
 date: 2020-12-04
-categories: [K NEAREST NEIGHBORS, PYTHON]
+categories: [K NEAREST NEIGHBORS, DATA VISUALIZATION, PYTHON]
 citation:
   url: https://suppiero.github.io/projects/pokemon_legendary_classifier/
 #bibliography: references.bib # fix bibliography
