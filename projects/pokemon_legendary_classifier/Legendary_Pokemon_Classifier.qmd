@@ -1,5 +1,5 @@
 ---
-title: Legendary Pokemon Classifier
+title: Classifying Legendary Pokemon
 jupyter:
   kernelspec:
 	display_name: Python (Pyodide)
