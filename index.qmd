@@ -3,7 +3,7 @@ title: "Piero Trujillo"
 
 about:
   template: trestles
-  image: images/headshot.jpeg
+  image: images/headshot2.jpg
   image-shape: round
   image-width: 18em
   links:
