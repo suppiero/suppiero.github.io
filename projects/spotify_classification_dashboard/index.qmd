@@ -1,0 +1,19 @@
+---
+title: "Spotify Dashboard"
+description: "Visualizing results as a Dashboard"
+author:
+  - name: Piero Trujillo
+    url: https://suppiero.github.io 
+
+date: 2024-04-01
+categories: [PYTHON, PANEL DASHBOARD, MACHINE LEARNING]
+citation:
+  url: https://suppiero.github.io/projects/spotify_classification_dashboard/
+#bibliography: references.bib # fix bibliography
+format:
+  html:
+    code-fold: false
+    code-summary: "code dropdown"
+image: "spotify_image.jpg"
+draft: false # "true" will mean this is a draft post so it wont show up on my site
+---
