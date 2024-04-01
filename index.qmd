@@ -21,7 +21,7 @@ about:
       href: https://github.com/suppiero
 ---
 
-### about me
+### About Me
 
 Hello 👋🏽 My name is Piero Trujillo and welcome to my personal website!
 
@@ -31,7 +31,7 @@ I possess extensive knowledge in data science libraries using Python, tidymodels
 
 In my spare time, you can find me playing soccer and spikeball, getting my hands dirty in ceramics, whipping up culinary delights in the kitchen, or being a foodie with my friends downtown.
 
-### education
+### Education
 
 Bachelor's in Statistics & Data Science \| 2023 \| UCSB
 Currently enrolled in the Google Data Analytics Professional Certificate
