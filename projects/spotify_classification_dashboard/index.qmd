@@ -81,12 +81,11 @@ Now, let’s dive into the exciting world of music data analysis!
 
 ```{python}
 import pandas as pd
-import matplotlib.pyplot as plt
 import numpy as np
 
 # Read in csv file to create tabular dataframe 
-piero_top_songs = pd.read_csv("/Users/piero/Downloads/Spotify_Project/Piero_Top_Songs_2023.csv") 
-nirvit_top_songs = pd.read_csv("/Users/piero/Downloads/Spotify_Project/Nirvit_Top_Songs_2023.csv") 
+piero_top_songs = pd.read_csv("/Users/brizaespinoza/Downloads/Git/suppiero.github.io/projects/spotify_classification_dashboard/data/Piero_Top_Songs_2023.csv") 
+nirvit_top_songs = pd.read_csv("/Users/brizaespinoza/Downloads/Git/suppiero.github.io/projects/spotify_classification_dashboard/data/Nirvit_Top_Songs_2023.csv") 
 
 # Add a truth column to classify whether a song is from Piero's or Nirvit's playlist
 piero_top_songs['Playlist Owner'] = 'Piero'
@@ -106,9 +105,12 @@ all_songs = pd.concat([piero_top_songs, nirvit_top_songs])
 # Convert all object columns to type string
 object_columns = all_songs.select_dtypes(include=['object']).columns # First, create list of object columns to convert
 all_songs[object_columns] = all_songs[object_columns].astype('string')
-
-#print(all_songs.dtypes) # Check that column types have been converted to string
 ```
+
+```{python}
+print(all_songs.dtypes) # Check that column types have been converted to string
+```
+
 
 
 ```{python}
