@@ -1,6 +1,6 @@
 ---
-title: "Spotify Dashboard"
-description: "Visualizing results as a Dashboard"
+title: "Spotify Classification Dashboard and Model Analysis"
+description: "Crafting predicitve models to determine whose playlist a song belongs to and summarizing results into an interactive dashboard."
 author:
   - name: Piero Trujillo
     url: https://suppiero.github.io 

@@ -4,14 +4,14 @@
     "href": "index.html",
     "title": "Piero Trujillo",
     "section": "",
-    "text": "about me\nHello 👋🏽 My name is Piero Trujillo and welcome to my personal website!\nI recently graduated from the University of California, Santa Barbara, where I received a Bachelor’s Degree in Statistics & Data Science.\nI possess extensive knowledge in data science libraries using Python, tidymodels and tidyverse in R, as well as intermediate proficiency in SQL and PySpark for database and big data processing.\nIn my spare time, you can find me playing soccer and spikeball, getting my hands dirty in ceramics, whipping up culinary delights in the kitchen, or being a foodie with my friends downtown.\n\n\neducation\nBachelor’s in Statistics & Data Science | 2023 | UCSB"
+    "text": "About Me\nHello 👋🏽 My name is Piero Trujillo and welcome to my personal website!\nI recently graduated from the University of California, Santa Barbara, where I received a Bachelor’s Degree in Statistics & Data Science.\nI possess extensive knowledge in data science libraries using Python, tidymodels and tidyverse in R, as well as intermediate proficiency in SQL and PySpark for database and big data processing.\nIn my spare time, you can find me playing soccer and spikeball, getting my hands dirty in ceramics, whipping up culinary delights in the kitchen, or being a foodie with my friends downtown.\n\n\nEducation\nBachelor’s in Statistics & Data Science | 2023 | UCSB Currently enrolled in the Google Data Analytics Professional Certificate"
   },
   {
     "objectID": "projects.html",
     "href": "projects.html",
-    "title": "portfolio",
+    "title": "Portfolio",
     "section": "",
-    "text": "Check out some of my favorite projects I worked on as an undergraduate student at UC Santa Barbara!\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nUnderstanding and Modeling Human Mobility Response to California Wildfires\n\n\nA research poster created for the statistics & data science capstone project.\n\n\n\nPiero Trujillo, Justin Liu, Lyndsey Umsted, Ellen Burrell\n\n\nJun 5, 2023\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nPredicting Points in Fantasy Premier League\n\n\nUsing machine learning to propel myself to the top of my minileague!\n\n\n\nPiero Trujillo\n\n\nDec 11, 2022\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nClassifying Legendary Pokemon\n\n\nPredicting whether a pokemon is legendary based on their stats & attributes.\n\n\n\nPiero Trujillo and Randy Ross\n\n\nDec 4, 2020\n\n\n\n\n\n\n\n\nNo matching items"
+    "text": "Check out some of my favorite projects I worked on as an undergraduate student at UC Santa Barbara!\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nSpotify Classification Dashboard and Model Analysis\n\n\nCrafting predicitve models to determine whose playlist a song belongs to and summarizing results into an interactive dashboard.\n\n\n\nPiero Trujillo\n\n\nApr 1, 2024\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nUnderstanding and Modeling Human Mobility Response to California Wildfires\n\n\nA research poster created for the 2023 UCSB Data Science Capstone Showcase.\n\n\n\nPiero Trujillo, Justin Liu, Lyndsey Umsted, Ellen Burrell\n\n\nJun 5, 2023\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nPredicting Points in Fantasy Premier League\n\n\nUsing machine learning to propel myself to the top of my mini league!\n\n\n\nPiero Trujillo\n\n\nDec 11, 2022\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nClassifying Legendary Pokemon\n\n\nPredicting whether a pokemon is legendary based on their stats & attributes.\n\n\n\nPiero Trujillo and Randy Ross\n\n\nDec 4, 2020\n\n\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "projects.html#links-poster",
@@ -110,5 +110,12 @@
     "title": "Classifying Legendary Pokemon",
     "section": "Classifying Legendary Pokemon",
     "text": "Classifying Legendary Pokemon\n\nprediction_1 = classify_table(training, testing.drop(\"Class\"), 1)\nprediction_3 = classify_table(training, testing.drop(\"Class\"), 3)\nprediction_5 = classify_table(training, testing.drop(\"Class\"), 5)\n\n\naccuracy_1 = accuracy(prediction_1.column(\"Class\"), testing.column(\"Class\"))\naccuracy_3 = accuracy(prediction_3.column(\"Class\"), testing.column(\"Class\"))\naccuracy_5 = accuracy(prediction_5.column(\"Class\"), testing.column(\"Class\"))\n\nprint(\"k=1 -&gt;\", accuracy_1)\nprint(\"k=3 -&gt;\", accuracy_3)\nprint(\"k=5 -&gt;\", accuracy_5)\n\nk=1 -&gt; 0.9738805970149254\nk=3 -&gt; 0.9701492537313433\nk=5 -&gt; 0.9701492537313433\n\n\n\nResults\nThe classifier was run using a few different k-values for the k-nearest neighbor algorithm. Using the 1st nearest-neighbor, the accuracy was about 95%. Going to the 3 nearest neighbors, the accuracy went up to about 95.5%. With 5 nearest neighbors, the accuracy was 95.9%. Increasing the k-value just slightly increases the accuracy of the classifier."
+  },
+  {
+    "objectID": "projects/spotify_classification_dashboard/index.html",
+    "href": "projects/spotify_classification_dashboard/index.html",
+    "title": "Spotify Classification Dashboard and Model Analysis",
+    "section": "",
+    "text": "CitationBibTeX citation:@online{trujillo2024,\n  author = {Trujillo, Piero},\n  title = {Spotify {Classification} {Dashboard} and {Model} {Analysis}},\n  date = {2024-04-01},\n  url = {https://suppiero.github.io/projects/spotify_classification_dashboard/},\n  langid = {en}\n}\nFor attribution, please cite this work as:\nTrujillo, Piero. 2024. “Spotify Classification Dashboard and Model\nAnalysis.” April 1, 2024. https://suppiero.github.io/projects/spotify_classification_dashboard/."
   }
 ]

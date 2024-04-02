@@ -1,6 +1,6 @@
 ---
 title: "Predicting Points in Fantasy Premier League"
-description: "Using machine learning to propel myself to the top of my minileague!"
+description: "Using machine learning to propel myself to the top of my mini league!"
 author:
   - name: Piero Trujillo
     url: https://suppiero.github.io 
