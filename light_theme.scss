@@ -72,6 +72,9 @@ $GhostWhite:	#F8F8FF;
 $honeydew:	#F0FFF0;
 $DarkGreen:	#006400;
 $avocado-green: #B2C248;
+$spring-green: #57ff76;
+$forest: #254e2b;
+$sand: #f0f0e8;
 
 // Fonts
 $font-size: 35px;
@@ -79,8 +82,8 @@ $font-size: 35px;
 
 // Base Document Colors 
 
-$navbar-bg: $tea_green; //navbar
-$navbar-fg: $benifuji; // navbar foreground elements
+$navbar-bg: $forest; //navbar $tea_green
+$navbar-fg: $spring-green; // navbar foreground elements $benifuji
 $navbar-hl: $benifuji; // highlight color when hovering over navbar links
 $body-bg: $honeydew; // page background 
 $body-color: $black; // page text 
