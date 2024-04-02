@@ -413,13 +413,58 @@ Now we've got ourselves a normalized dataset!
 ```{python}
 normalized_songs
 ```
-
+### Setting Up Training and Testing Data
 
 ```{python}
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
+from sklearn.metrics import mean_squared_error
+from sklearn import preprocessing
+from sklearn.preprocessing import OneHotEncoder
 
+# Define features (X) and target variable (y)
+X = normalized_songs[['Popularity', 'BPM', 'Dance', 'Energy', 'Acoustic', 'Instrumental', 'Happy', 'Speech', 'Live', 'Loud', 'Key', 'Time Signature', 'Camelot', 'Time Seconds', 'Genre']] # Features
+
+y = normalized_songs['Binary Response'] # Target variable Playlist Owner
+
+# Initialize OneHotEncoder
+encoder = OneHotEncoder(drop='first', sparse=False)
+
+# One-hot encode categorical columns
+X_encoded = pd.DataFrame(encoder.fit_transform(X[['Key', 'Camelot', 'Genre']]))  # Only encode categorical columns
+X_encoded.columns = encoder.get_feature_names_out(['Key', 'Camelot', 'Genre'])  # Get categorical column names
+
+# Reset indices of X and X_encoded
+X.reset_index(drop=True, inplace=True)
+X_encoded.reset_index(drop=True, inplace=True)
+
+# Concatenate numerical and encoded categorical columns
+X_final = pd.concat([X, X_encoded], axis=1)
+
+# Drop original columns since they have been encoded to new columns
+X_final.drop(columns=['Key', 'Camelot', 'Genre'], inplace=True)
+
+# Splitting up the data into training and testing sets (60% training, 40% testing)
+X_train, X_test, y_train, y_test = train_test_split(X_final, y, test_size=0.4, random_state=18, shuffle=True)
 ```
+Now that the data has been split into testing and training sets, the next step involves creating machine learning models to predict which Spotify Wrapped playlist a song belongs to.
 
+## Creating Machine Learning Models
+
+### Logistic Regression
 
 ```{python}
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import accuracy_score
 
+# Create and train the logistic regression model
+lr_model = LogisticRegression()
+lr_model.fit(X_train, y_train)
+
+# Make predictions on the testing set
+y_pred_lr = lr_model.predict(X_test)
+
+# Evaluate the model
+accuracy_lr = accuracy_score(y_test, y_pred_lr)
+print("Accuracy:", accuracy_lr)
 ```
