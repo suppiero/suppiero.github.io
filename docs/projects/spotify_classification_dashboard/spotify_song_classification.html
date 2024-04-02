@@ -6,8 +6,11 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Piero Trujillo">
+<meta name="dcterms.date" content="2024-04-01">
+<meta name="description" content="Crafting predicitve models to determine whose playlist a song belongs to and summarizing results into an interactive dashboard.">
 
-<title>Piero Trujillo - Introduction</title>
+<title>Piero Trujillo - Spotify Classification Dashboard and Model Analysis</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -159,14 +162,36 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-page">
-      <h1 class="title">Introduction</h1>
-                      </div>
+      <h1 class="title">Spotify Classification Dashboard and Model Analysis</h1>
+                  <div>
+        <div class="description">
+          Crafting predicitve models to determine whose playlist a song belongs to and summarizing results into an interactive dashboard.
+        </div>
+      </div>
+                          <div class="quarto-categories">
+                <div class="quarto-category">PYTHON</div>
+                <div class="quarto-category">PANEL DASHBOARD</div>
+                <div class="quarto-category">MACHINE LEARNING</div>
+              </div>
+                  </div>
   </div>
     
   
   <div class="quarto-title-meta">
 
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p><a href="https://suppiero.github.io">Piero Trujillo</a> </p>
+            </div>
+    </div>
       
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">April 1, 2024</p>
+      </div>
+    </div>
     
       
     </div>
@@ -182,16 +207,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<h1>
-<center>
-Spotify Classification Dashboard and Model Analysis
-</center>
-</h1>
-<h3 class="anchored">
-<center>
-By Piero Trujillo
-</center>
-</h3>
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
 <p>In this project, my friend Nirvit and I shared our 2023 Spotify Wrapped playlists so we could visualize comparisons between our music tastes and then create a model to try and predict whose playlist a song belongs to. Finally, I have compiled the results of each model into an interactive dashboard using <a href="https://panel.holoviz.org/">Panel</a>.</p>
 <p>This blog post will have the following sections:</p>
 <ul>
@@ -205,11 +222,132 @@ By Piero Trujillo
 <p>Now, let’s dive into the exciting world of music data analysis!</p>
 <section id="understanding-our-spotify-dataset" class="level3">
 <h3 class="anchored" data-anchor-id="understanding-our-spotify-dataset">Understanding our Spotify Dataset</h3>
-<p><strong>Track Metadata</strong> | column | description | | — | — | | Song | Song title | | Artist | Song artist | | Genre | Song genre category |</p>
-<p><strong>Audio Numerical Quantitive Data</strong> | column | description | | — | — | | Loud | How loud a song is (db) | | Time Seconds | Duration of the song in seconds | | BPM | Average song tempo / how fast a song is |</p>
-<p><strong>Audio Qualitative Data</strong> | column | description | | — | — | | Energy | How energetic the song is | | Dance | How easy the song is to dance to | | Happy | How positive the mood of the song is | | Acoustic | How acoustic sounding the song is | | Speech | How much of a song is spoken word | | Popularity | How popular a song is (at time of data collection) | | Live | How likely the song is a live recording (higher value = live recording) | | Instrumental | Measures if the song is more music and less vocals |</p>
-<p><strong>Audio Categorical Data</strong> | column | description | | — | — | | Key | The most repeated key in the song | | Time Signature | Numerical representation of rhythmic structure in song | | Camelot | Musical key of a song for harmonic mixing | | Playlist Owner | Who’s playlist the song belongs to |</p>
-<p><a href="https://www.chosic.com/spotify-playlist-analyzer/?plid=37i9dQZF1Fa1IIVtEpGUcU"><strong>Gather Your Own Spotify Dataset</strong></a></p>
+<p><strong>Track Metadata</strong></p>
+<table class="table">
+<thead>
+<tr class="header">
+<th>column</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Song</td>
+<td>Song title</td>
+</tr>
+<tr class="even">
+<td>Artist</td>
+<td>Song artist</td>
+</tr>
+<tr class="odd">
+<td>Genre</td>
+<td>Song genre category</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Audio Numerical Quantitive Data</strong></p>
+<table class="table">
+<thead>
+<tr class="header">
+<th>column</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Loud</td>
+<td>How loud a song is (db)</td>
+</tr>
+<tr class="even">
+<td>Time Seconds</td>
+<td>Duration of the song in seconds</td>
+</tr>
+<tr class="odd">
+<td>BPM</td>
+<td>Average song tempo / how fast a song is</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Audio Qualitative Data</strong></p>
+<table class="table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>column</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Energy</td>
+<td>How energetic the song is</td>
+</tr>
+<tr class="even">
+<td>Dance</td>
+<td>How easy the song is to dance to</td>
+</tr>
+<tr class="odd">
+<td>Happy</td>
+<td>How positive the mood of the song is</td>
+</tr>
+<tr class="even">
+<td>Acoustic</td>
+<td>How acoustic sounding the song is</td>
+</tr>
+<tr class="odd">
+<td>Speech</td>
+<td>How much of a song is spoken word</td>
+</tr>
+<tr class="even">
+<td>Popularity</td>
+<td>How popular a song is (at time of data collection)</td>
+</tr>
+<tr class="odd">
+<td>Live</td>
+<td>How likely the song is a live recording (higher value = live recording)</td>
+</tr>
+<tr class="even">
+<td>Instrumental</td>
+<td>Measures if the song is more music and less vocals</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Audio Categorical Data</strong></p>
+<table class="table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>column</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Key</td>
+<td>The most repeated key in the song</td>
+</tr>
+<tr class="even">
+<td>Time Signature</td>
+<td>Numerical representation of rhythmic structure in song</td>
+</tr>
+<tr class="odd">
+<td>Camelot</td>
+<td>Musical key of a song for harmonic mixing</td>
+</tr>
+<tr class="even">
+<td>Playlist Owner</td>
+<td>Who’s playlist the song belongs to</td>
+</tr>
+</tbody>
+</table>
+<p><a href="https://www.chosic.com/spotify-playlist-analyzer/?plid=37i9dQZF1Fa1IIVtEpGUcU"><strong>Gather Your Own Spotify Dataset.</strong></a></p>
+</section>
 </section>
 <section id="setup-and-preprocessing" class="level2">
 <h2 class="anchored" data-anchor-id="setup-and-preprocessing">Setup and Preprocessing</h2>
@@ -1866,7 +2004,7 @@ dtype: object</code></pre>
 <span id="cb45-102"><a href="#cb45-102" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb45-103"><a href="#cb45-103" aria-hidden="true" tabindex="-1"></a><span class="co">#text1 = 'Visualize the performance of machine learning models in classifying songs from my playlist and my friends.' </span></span>
 <span id="cb45-104"><a href="#cb45-104" aria-hidden="true" tabindex="-1"></a>text2 <span class="op">=</span> <span class="st">'Select a model using the buttons above to visualize its performance.'</span> </span>
-<span id="cb45-105"><a href="#cb45-105" aria-hidden="true" tabindex="-1"></a>text3 <span class="op">=</span> <span class="st">'[View dashboard code](link_to_your_code)'</span></span>
+<span id="cb45-105"><a href="#cb45-105" aria-hidden="true" tabindex="-1"></a>text3 <span class="op">=</span> <span class="st">'[View dashboard code](https://github.com/suppiero/spotify_classification_dash)'</span></span>
 <span id="cb45-106"><a href="#cb45-106" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb45-107"><a href="#cb45-107" aria-hidden="true" tabindex="-1"></a><span class="co"># Dashboard layout</span></span>
 <span id="cb45-108"><a href="#cb45-108" aria-hidden="true" tabindex="-1"></a>template <span class="op">=</span> pn.template.FastListTemplate(theme<span class="op">=</span><span class="st">"dark"</span>,</span>
@@ -2552,12 +2690,27 @@ The default value of numeric_only in DataFrame.corr is deprecated. In a future v
 </section>
 <section id="sources" class="level2">
 <h2 class="anchored" data-anchor-id="sources">Sources</h2>
-<p>I’d like to extend a special thank you to the wonderful data analysts who inspired me to make this project, offering invaluable ideas and sharing fantastic source code. * <a href="https://lewis-r-white.github.io/posts/2023-03-13-spotify-ML-blog/">Whose Song is it Anyway? By Lewis White.</a> * <a href="https://www.youtube.com/watch?v=uhxiXOTKzfs">How to Create a Beautiful Python Visualization Dashboard With Panel/Hvplot. By Thu Vu Data Analytics.</a> * <a href="https://github.com/AlisonSalerno/song-popularity-linear-regression/tree/master">Predicting Song Popularity. By Alison Salerno.</a> * <a href="https://panel.holoviz.org/gallery/index.html">App Gallery. By Panel.</a></p>
+<p>I’d like to extend a special thank you to the wonderful data analysts who inspired me to make this project, offering invaluable ideas and sharing fantastic source code! * <a href="https://lewis-r-white.github.io/posts/2023-03-13-spotify-ML-blog/">Whose Song is it Anyway? By Lewis White.</a></p>
+<ul>
+<li><p><a href="https://www.youtube.com/watch?v=uhxiXOTKzfs">How to Create a Beautiful Python Visualization Dashboard With Panel/Hvplot. By Thu Vu Data Analytics.</a></p></li>
+<li><p><a href="https://github.com/AlisonSalerno/song-popularity-linear-regression/tree/master">Predicting Song Popularity. By Alison Salerno.</a></p></li>
+<li><p><a href="https://panel.holoviz.org/gallery/index.html">App Gallery. By Panel.</a></p></li>
+</ul>
 
 
 </section>
 
-</main> <!-- /main -->
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{trujillo2024,
+  author = {Trujillo, Piero},
+  title = {Spotify {Classification} {Dashboard} and {Model} {Analysis}},
+  date = {2024-04-01},
+  url = {https://suppiero.github.io/projects/spotify_classification_dashboard/},
+  langid = {en}
+}
+</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-trujillo2024" class="csl-entry quarto-appendix-citeas" role="listitem">
+Trujillo, Piero. 2024. <span>“Spotify Classification Dashboard and Model
+Analysis.”</span> April 1, 2024. <a href="https://suppiero.github.io/projects/spotify_classification_dashboard/">https://suppiero.github.io/projects/spotify_classification_dashboard/</a>.
+</div></div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {

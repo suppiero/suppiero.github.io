@@ -3,7 +3,7 @@
   "result": {
     "markdown": "---\ntitle: \"Spotify Classification Dashboard and Model Analysis\"\ndescription: \"Crafting predicitve models to determine whose playlist a song belongs to and summarizing results into an interactive dashboard.\"\nauthor:\n  - name: Piero Trujillo\n    url: https://suppiero.github.io \n\ndate: 2024-04-01\ncategories: [PYTHON, PANEL DASHBOARD, MACHINE LEARNING. DATA VISUALIZATION]\ncitation:\n  url: https://suppiero.github.io/projects/spotify_classification_dashboard/\n#bibliography: references.bib # fix bibliography\nformat:\n  html:\n    code-fold: false\n    code-summary: \"code dropdown\"\nimage: \"spotify_image.jpg\"\ndraft: false # \"true\" will mean this is a draft post so it wont show up on my site\n---\n\n::: {.cell execution_count=1}\n``` {.python .cell-code}\ninclude: \"/Users/brizaespinoza/Downloads/Git/suppiero.github.io/projects/spotify_classification_dashboard/spotify_song_classification.ipynb\"\n```\n:::\n\n\n",
     "supporting": [
-      "index_files"
+      "index_files/figure-html"
     ],
     "filters": [],
     "includes": {}

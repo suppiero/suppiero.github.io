@@ -2,8 +2,8 @@
   {
     "listing": "/projects.html",
     "items": [
-      "/projects/spotify_classification_dashboard/spotify_song_classification.html",
       "/projects/spotify_classification_dashboard/index.html",
+      "/projects/spotify_classification_dashboard/spotify_song_classification.html",
       "/projects/MOVE_Lab/index.html",
       "/projects/fantasy_premier_league/index.html",
       "/projects/pokemon_legendary_classifier/index.html"
