@@ -4,7 +4,7 @@ title: "Piero Trujillo"
 about:
   template: trestles
   image: images/headshot2.jpg
-  image-shape: round
+  image-shape: rounded
   image-width: 18em
   links:
     - icon: envelope-fill
@@ -17,7 +17,7 @@ about:
       text: LinkedIn
       href: https://www.linkedin.com/in/piero-trujillo-79180a188
     - icon: github
-      text: Github
+      text: GitHub
       href: https://github.com/suppiero
 ---
 
